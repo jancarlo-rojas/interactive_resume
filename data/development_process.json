@@ -1,0 +1,101 @@
+{
+  "overview": "This interactive resume was built as a full-stack web application that combines a custom front-end interface, a Node.js API layer, and OpenAI-powered retrieval-based responses. The goal was to let users ask natural-language questions about background, experience, and projects while keeping answers grounded in curated JSON resume data rather than generic internet knowledge.",
+  "system_architecture": [
+    "Presentation layer: Static web pages in the public folder provide navigation, portfolio content, and the AI chat UI.",
+    "Interaction layer: Browser JavaScript captures user messages, renders chat bubbles, and sends requests to the backend endpoint.",
+    "Application layer: Express server / API handler validates requests, assembles context, and orchestrates model calls.",
+    "Intelligence layer: Embeddings + cosine similarity retrieve the most relevant profile snippets before chat completion.",
+    "Data layer: Multiple JSON files (profile, resume, projects, personality, behavioral, etc.) act as the single source of truth.",
+    "Security/config layer: Environment variables store API keys and model settings outside committed source code."
+  ],
+  "frontend_components": [
+    "HTML structure: Multi-page site with Home, About, Projects, Experience, Contact, and Chat routes.",
+    "Global styling: Shared CSS theme (layout, typography, cards, buttons, navigation) for visual consistency.",
+    "Responsive behavior: Media queries and mobile-specific rules tune spacing, grids, and layout for iOS/smaller screens.",
+    "Chat experience: Message list, avatars, typing indicator, suggestion cards, and auto-scroll improve usability.",
+    "Client request flow: app.js sends POST requests to /api/chat with JSON payload { message } and renders returned replies.",
+    "Output formatting: Basic link detection converts URLs in model responses into clickable links in the chat bubble."
+  ],
+  "backend_components": [
+    "Node runtime and dependencies: Express for HTTP routing, CORS for browser access, dotenv for configuration, OpenAI SDK for model calls.",
+    "Static hosting behavior: Express serves files from public so the same app can host both UI and API in local mode.",
+    "Data bootstrapping: Server reads multiple JSON files at startup and gracefully logs warnings if a file is missing.",
+    "Chunking utility: Text is flattened and split into manageable chunks to support embedding and retrieval quality.",
+    "Similarity engine: Dot product + vector norm implement cosine similarity for ranking relevant chunks.",
+    "Request handling: Endpoint validates input, retrieves context snippets, builds messages, calls chat model, and returns JSON output."
+  ],
+  "ai_rag_pipeline": [
+    "Step 1 — Knowledge preparation: Curated resume/profile JSON is converted into readable text sections.",
+    "Step 2 — Chunking: Long text is broken into chunk units (target length around 800 chars) for stable retrieval granularity.",
+    "Step 3 — Embedding generation: Each chunk is converted to a numeric vector using an embedding model.",
+    "Step 4 — Query embedding: User question is embedded into the same vector space.",
+    "Step 5 — Retrieval: Cosine similarity ranks chunk relevance; top chunks above threshold are selected.",
+    "Step 6 — Prompt assembly: System instructions + retrieved snippets + user question are sent to chat completion.",
+    "Step 7 — Response synthesis: Model answers conversationally using retrieved evidence and returns text to UI.",
+    "Step 8 — Traceability: Retrieved chunk IDs/scores can be returned for debugging and quality checks."
+  ],
+  "data_files_and_purpose": [
+    "profile.json: Identity, headline, location, contact, and high-level summary used for intro-style questions.",
+    "resume.json: Education, experience, technical skills, and role-specific highlights for formal resume answers.",
+    "projects.json: Personal projects and repository metadata for portfolio and technical depth questions.",
+    "personality.json / performance.json / leadership.json: Behavioral and style context for interview-style prompts.",
+    "career_goals.json: Long-term direction and professional target path for aspiration-oriented questions.",
+    "behavorial.json: Pressure handling, teamwork, conflict style, and practical example responses.",
+    "development_process.json: Detailed explanation of how this product itself was designed, built, and iterated."
+  ],
+  "development_workflow": [
+    "Requirements framing: Define user goal (interactive resume that feels conversational while staying factual).",
+    "Initial scaffolding: Create front-end pages, chat UI shell, Node server, and API route wiring.",
+    "Data modeling: Organize personal/professional knowledge into structured JSON files by theme.",
+    "RAG implementation: Add text flattening, chunking, embeddings, similarity scoring, and contextual prompting.",
+    "UX refinement: Improve chat readability, suggestion prompts, and response presentation.",
+    "Mobile iteration: Resolve viewport/layout issues, adjust responsive rules, and tune page-specific behavior.",
+    "Validation cycle: Test query quality, edge cases, and readability for both beginner and advanced audiences.",
+    "Continuous updates: Expand data files and prompts over time as projects and experience evolve."
+  ],
+  "mobile_ui_strategy": [
+    "Use CSS media queries to adapt spacing, typography, and component sizing for smaller screens.",
+    "Apply page-specific classes when a single global mobile rule causes side effects on specialized pages (like chat).",
+    "Prefer layout-level fixes (grid/flex/container tuning) over forcing device/browser zoom where possible.",
+    "Use iOS-friendly viewport units (dvh) for reliable full-height components such as chat windows.",
+    "Keep navigation behavior simple and consistent to reduce mobile interaction friction."
+  ],
+  "security_and_operations": [
+    "API key management: OPENAI_API_KEY stays in environment variables and is never hard-coded in client JavaScript.",
+    "Client/server boundary: Browser calls backend endpoint; only server communicates with OpenAI APIs.",
+    "Error handling: API validates message input and returns structured errors when request processing fails.",
+    "Operational note: Local development uses in-memory retrieval; production can move to persistent vector storage.",
+    "Scalability path: Add rate limiting, authentication, caching, logging, and monitoring for production-grade deployment."
+  ],
+  "beginner_friendly_explanation": [
+    "At a simple level, think of this app as a smart Q&A website about one person’s resume.",
+    "The website page is the part you see and type into; the server is the part that thinks and responds.",
+    "The server does not guess from the whole internet. It reads only saved profile files you wrote.",
+    "Before answering, it finds the most relevant notes from those files, then asks the AI model to phrase a natural response.",
+    "That is why answers feel conversational but still stay tied to your actual experience and projects."
+  ],
+  "advanced_notes": [
+    "Current retrieval is lexical-agnostic semantic search via embeddings + cosine similarity without ANN indexing.",
+    "Context packing currently uses top-k chunks with a similarity threshold and fallback to best chunk when sparse.",
+    "Server mode pre-computes chunk embeddings at startup; API route mode computes them per request (slower but stateless).",
+    "Prompting uses multi-system-message construction: behavior instruction plus retrieved evidence block.",
+    "Potential improvements: hybrid retrieval (BM25 + vector), reranking, chunk metadata filters, and prompt compression.",
+    "Potential quality controls: citation-style answer formatting, confidence scoring, and unsupported-claim suppression."
+  ],
+  "faq_prompts": [
+    "How was this project architected from front end to AI response?",
+    "Can you explain this app at beginner, intermediate, and advanced levels?",
+    "What technologies were used and why were they chosen?",
+    "How does retrieval work before the model generates a response?",
+    "How is mobile responsiveness handled and what issues were solved?",
+    "What are the security and production-readiness considerations for this app?"
+  ],
+  "glossary": [
+    "Embedding: Numeric representation of text meaning used for semantic comparison.",
+    "RAG (Retrieval-Augmented Generation): Technique where relevant source text is retrieved before model generation.",
+    "Cosine similarity: A score showing how close two vectors are in direction/meaning.",
+    "Chunking: Splitting long text into smaller sections for better retrieval and prompt packing.",
+    "System prompt: Instruction message that guides model behavior and tone.",
+    "API endpoint: Server URL that accepts requests and returns structured responses."
+  ]
+}

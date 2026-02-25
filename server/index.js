@@ -17,6 +17,7 @@ let careerGoals = {};
 let performance = {};
 let leadership = {};
 let behavioral = {};
+let developmentProcess = {};
 
 // Load all data files
 try {
@@ -65,6 +66,12 @@ try {
   behavioral = JSON.parse(fs.readFileSync('./data/behavorial.json', 'utf8'));
 } catch (e) {
   console.warn('Could not load behavorial.json');
+}
+
+try {
+  developmentProcess = JSON.parse(fs.readFileSync('./data/development_process.json', 'utf8'));
+} catch (e) {
+  console.warn('Could not load development_process.json');
 }
 
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -216,6 +223,47 @@ async function createEmbeddingsForResume() {
   }
   if (behavioral.conflict_style) {
     sections.push(`Conflict Style: ${behavioral.conflict_style}`);
+  }
+
+  // Add data from development_process.json
+  if (developmentProcess.overview) {
+    sections.push(`How this application was built (overview): ${developmentProcess.overview}`);
+  }
+  if (developmentProcess.system_architecture && developmentProcess.system_architecture.length > 0) {
+    sections.push(`System Architecture: ${developmentProcess.system_architecture.join(' | ')}`);
+  }
+  if (developmentProcess.frontend_components && developmentProcess.frontend_components.length > 0) {
+    sections.push(`Frontend Components: ${developmentProcess.frontend_components.join(' | ')}`);
+  }
+  if (developmentProcess.backend_components && developmentProcess.backend_components.length > 0) {
+    sections.push(`Backend Components: ${developmentProcess.backend_components.join(' | ')}`);
+  }
+  if (developmentProcess.ai_rag_pipeline && developmentProcess.ai_rag_pipeline.length > 0) {
+    sections.push(`AI Retrieval Pipeline: ${developmentProcess.ai_rag_pipeline.join(' | ')}`);
+  }
+  if (developmentProcess.data_files_and_purpose && developmentProcess.data_files_and_purpose.length > 0) {
+    sections.push(`Data Files and Purpose: ${developmentProcess.data_files_and_purpose.join(' | ')}`);
+  }
+  if (developmentProcess.development_workflow && developmentProcess.development_workflow.length > 0) {
+    sections.push(`Development Workflow: ${developmentProcess.development_workflow.join(' | ')}`);
+  }
+  if (developmentProcess.mobile_ui_strategy && developmentProcess.mobile_ui_strategy.length > 0) {
+    sections.push(`Mobile UI Strategy: ${developmentProcess.mobile_ui_strategy.join(' | ')}`);
+  }
+  if (developmentProcess.security_and_operations && developmentProcess.security_and_operations.length > 0) {
+    sections.push(`Security and Operations: ${developmentProcess.security_and_operations.join(' | ')}`);
+  }
+  if (developmentProcess.beginner_friendly_explanation && developmentProcess.beginner_friendly_explanation.length > 0) {
+    sections.push(`Beginner-Friendly Explanation: ${developmentProcess.beginner_friendly_explanation.join(' | ')}`);
+  }
+  if (developmentProcess.advanced_notes && developmentProcess.advanced_notes.length > 0) {
+    sections.push(`Advanced Notes: ${developmentProcess.advanced_notes.join(' | ')}`);
+  }
+  if (developmentProcess.faq_prompts && developmentProcess.faq_prompts.length > 0) {
+    sections.push(`How to ask about the build: ${developmentProcess.faq_prompts.join(' | ')}`);
+  }
+  if (developmentProcess.glossary && developmentProcess.glossary.length > 0) {
+    sections.push(`Glossary: ${developmentProcess.glossary.join(' | ')}`);
   }
 
   const allText = sections.join('\n\n');
