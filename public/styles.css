@@ -78,6 +78,12 @@ html,body{height:100%;margin:0;font-family:'Segoe UI',Trebuchet MS,Arial,sans-se
 body{display:flex;flex-direction:column;min-height:100vh}
 .container{flex:1}
 
+body.home-page .container,
+body.contact-page .container{
+  max-width:100%;
+  width:100%;
+}
+
 @media (max-width: 768px){
   body:not(.chat-page){
     min-height:200vh;
