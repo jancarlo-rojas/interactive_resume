@@ -5,7 +5,6 @@
   }
   body {
     width: 200%;
-    min-height: 200vh;
     transform: scale(0.5);
     transform-origin: top left;
   }
@@ -75,6 +74,13 @@ html,body{height:100%;margin:0;font-family:'Segoe UI',Trebuchet MS,Arial,sans-se
 .container{max-width:1200px;margin:0 auto;padding:40px 20px 60px}
 body{display:flex;flex-direction:column;min-height:100vh}
 .container{flex:1}
+
+@media (max-width: 768px){
+  body{
+    min-height:200vh;
+    min-height:200dvh;
+  }
+}
 
 /* Hero Section */
 .hero{text-align:center;padding:60px 20px;background:linear-gradient(135deg,#ffffff 0%,#f5f5f5 100%)}
