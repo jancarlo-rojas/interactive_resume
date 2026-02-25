@@ -168,52 +168,59 @@ function flattenResume() {
 }
 
 export default async function handler(req: any, res: any) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-  const userMessage = req.body.message;
-  if (!userMessage) return res.status(400).json({ error: 'message required' });
-
   try {
-    const embModel = process.env.OPENAI_EMBEDDING_MODEL || 'text-embedding-3-small';
-    const allText = flattenResume();
-    const textChunks = chunkText(allText, 800);
-    const chunkEmbeddings = [];
-    for (let i = 0; i < textChunks.length; i++) {
-      const text = textChunks[i];
-      const r = await client.embeddings.create({ model: embModel, input: text });
-      const embedding = r.data[0].embedding;
-      chunkEmbeddings.push({ id: `chunk-${i}`, text, embedding });
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
     }
-    const q = await client.embeddings.create({ model: embModel, input: userMessage });
-    const qEmbedding = q.data[0].embedding;
-    const scored = chunkEmbeddings.map(c => ({ ...c, score: cosineSim(qEmbedding, c.embedding) }));
-    scored.sort((a, b) => b.score - a.score);
-    const top = scored.slice(0, 5).filter(s => s.score > 0.2);
-    const finalChunks = top.length > 0 ? top : (scored.length > 0 ? [scored[0]] : []);
+    const userMessage = req.body && req.body.message;
+    if (!userMessage) return res.status(400).json({ error: 'message required' });
 
-    const systemInstruction = `You are a personable assistant representing someone's professional profile. Your role is to answer questions based on resume data, but respond in a natural, conversational way instead of just reading the resume verbatim.\n\nGuidelines:\n- Synthesize and paraphrase information rather than copying it directly\n- Use \"I\" perspective when discussing personal experiences, skills, and goals\n- Add context and brief explanations to make answers more meaningful\n- Connect related topics when relevant\n- Keep responses concise (2-3 sentences typically)\n- If asked something not in the resume, say \"I don't have that information in my resume\"\n- Show personality and enthusiasm about relevant topics\n- Use conversational language, not robotic responses`;
+    try {
+      const embModel = process.env.OPENAI_EMBEDDING_MODEL || 'text-embedding-3-small';
+      const allText = flattenResume();
+      const textChunks = chunkText(allText, 800);
+      const chunkEmbeddings = [];
+      for (let i = 0; i < textChunks.length; i++) {
+        const text = textChunks[i];
+        const r = await client.embeddings.create({ model: embModel, input: text });
+        const embedding = r.data[0].embedding;
+        chunkEmbeddings.push({ id: `chunk-${i}`, text, embedding });
+      }
+      const q = await client.embeddings.create({ model: embModel, input: userMessage });
+      const qEmbedding = q.data[0].embedding;
+      const scored = chunkEmbeddings.map(c => ({ ...c, score: cosineSim(qEmbedding, c.embedding) }));
+      scored.sort((a, b) => b.score - a.score);
+      const top = scored.slice(0, 5).filter(s => s.score > 0.2);
+      const finalChunks = top.length > 0 ? top : (scored.length > 0 ? [scored[0]] : []);
 
-    const messages = [
-      { role: 'system', content: systemInstruction }
-    ];
-    if (finalChunks.length > 0) {
-      const snippets = finalChunks.map(t => `- (${t.id}) ${t.text}`).join('\n\n');
-      messages.push({ role: 'system', content: `Relevant resume snippets:\n\n${snippets}` });
-    } else {
-      messages.push({ role: 'system', content: 'No relevant resume snippets were found for this query.' });
+      const systemInstruction = `You are a personable assistant representing someone's professional profile. Your role is to answer questions based on resume data, but respond in a natural, conversational way instead of just reading the resume verbatim.\n\nGuidelines:\n- Synthesize and paraphrase information rather than copying it directly\n- Use \"I\" perspective when discussing personal experiences, skills, and goals\n- Add context and brief explanations to make answers more meaningful\n- Connect related topics when relevant\n- Keep responses concise (2-3 sentences typically)\n- If asked something not in the resume, say \"I don't have that information in my resume\"\n- Show personality and enthusiasm about relevant topics\n- Use conversational language, not robotic responses`;
+
+      const messages = [
+        { role: 'system', content: systemInstruction }
+      ];
+      if (finalChunks.length > 0) {
+        const snippets = finalChunks.map(t => `- (${t.id}) ${t.text}`).join('\n\n');
+        messages.push({ role: 'system', content: `Relevant resume snippets:\n\n${snippets}` });
+      } else {
+        messages.push({ role: 'system', content: 'No relevant resume snippets were found for this query.' });
+      }
+      messages.push({ role: 'user', content: userMessage });
+      const completion = await client.chat.completions.create({
+        model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
+        messages: messages as any,
+        max_tokens: 500
+      });
+      const reply = completion.choices && completion.choices[0] && completion.choices[0].message
+        ? completion.choices[0].message.content
+        : 'No response from model';
+      res.json({ reply, retrieved: finalChunks.map(t => ({ id: t.id, score: t.score })) });
+    } catch (err: any) {
+      console.error('API logic error:', err);
+      res.status(500).json({ error: err.message || String(err) });
     }
-    messages.push({ role: 'user', content: userMessage });
-    const completion = await client.chat.completions.create({
-      model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
-      messages: messages as any,
-      max_tokens: 500
-    });
-    const reply = completion.choices && completion.choices[0] && completion.choices[0].message
-      ? completion.choices[0].message.content
-      : 'No response from model';
-    res.json({ reply, retrieved: finalChunks.map(t => ({ id: t.id, score: t.score })) });
-  } catch (err: any) {
-    res.status(500).json({ error: err.message || String(err) });
+  } catch (outerErr: any) {
+    // Catch any unexpected errors and always return JSON
+    console.error('Handler outer error:', outerErr);
+    res.status(500).json({ error: 'Unexpected server error', details: outerErr.message || String(outerErr) });
   }
 }
