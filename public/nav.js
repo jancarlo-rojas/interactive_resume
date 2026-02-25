@@ -1,62 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('.nav-toggle');
-  const menu = document.querySelector('.nav-menu');
-  const container = document.querySelector('.nav-container');
+  const navbars = document.querySelectorAll('.navbar');
 
-  if (!toggle || !menu || !container) return;
+  navbars.forEach((nav) => {
+    const toggle = nav.querySelector('.nav-toggle');
+    const menu = nav.querySelector('.nav-menu');
+    if (!toggle || !menu) return;
 
-  // ensure closed on load
-  menu.classList.remove('show');
-  toggle.setAttribute('aria-expanded', 'false');
-
-  const toggleHandler = (e) => {
-    e.stopPropagation && e.stopPropagation(); // prevent document click handler from firing
-    const opened = menu.classList.toggle('show');
-    toggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
-  };
-  toggle.addEventListener('click', toggleHandler);
-  toggle.addEventListener('touchend', toggleHandler);
-
-  // Close menu when clicking a link
-  menu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
+    const closeMenu = () => {
       menu.classList.remove('show');
       toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('is-open');
+    };
+
+    const openMenu = () => {
+      menu.classList.add('show');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.classList.add('is-open');
+    };
+
+    closeMenu();
+
+    const handleToggle = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (menu.classList.contains('show')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    };
+
+    toggle.addEventListener('click', handleToggle);
+
+    const closeTargets = menu.querySelectorAll('a, .nav-close');
+    closeTargets.forEach((el) => {
+      el.addEventListener('click', () => {
+        closeMenu();
+      });
     });
-  });
 
-  // add a visible close button inside the menu for small screens
-  if (!menu.querySelector('.nav-close')) {
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'nav-close';
-    closeBtn.setAttribute('aria-label', 'Close menu');
-    closeBtn.innerHTML = '×';
-    closeBtn.addEventListener('click', () => {
-      menu.classList.remove('show');
-      toggle.setAttribute('aria-expanded', 'false');
+    document.addEventListener('click', (event) => {
+      if (!menu.classList.contains('show')) return;
+      if (nav.contains(event.target)) return;
+      closeMenu();
     });
-    closeBtn.addEventListener('touchend', () => {
-      menu.classList.remove('show');
-      toggle.setAttribute('aria-expanded', 'false');
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeMenu();
+      }
     });
-    menu.insertAdjacentElement('afterbegin', closeBtn);
-  }
-
-  // Close menu when clicking outside
-  const outsideHandler = (e) => {
-    if (!menu.classList.contains('show')) return;
-    if (e.target.closest && e.target.closest('.nav-container')) return;
-    menu.classList.remove('show');
-    toggle.setAttribute('aria-expanded', 'false');
-  };
-  document.addEventListener('click', outsideHandler);
-  document.addEventListener('touchstart', outsideHandler);
-
-  // on resize, ensure menu state matches desktop layout
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      menu.classList.remove('show');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
   });
 });
