@@ -10,8 +10,8 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="/" class="logo">JLR</a>
-      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
-      <ul class="nav-menu">
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <ul class="nav-menu desktop-menu">
         <li><a href="/" class="nav-link">Home</a></li>
         <li><a href="/about.html" class="nav-link">About</a></li>
         <li><a href="/projects.html" class="nav-link">Projects</a></li>
@@ -19,6 +19,22 @@
         <li><a href="/contact.html" class="nav-link">Contact</a></li>
         <li><a href="/chat.html" class="nav-link nav-link-primary">Chat with AI</a></li>
       </ul>
+    </div>
+    <div class="mobile-menu">
+      <div class="mobile-menu-content">
+        <button class="mobile-close" aria-label="Close menu">×</button>
+        <ul>
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/about.html" class="nav-link">About</a></li>
+          <li><a href="/projects.html" class="nav-link">Projects</a></li>
+          <li><a href="/experience.html" class="nav-link">Experience</a></li>
+          <li><a href="/contact.html" class="nav-link">Contact</a></li>
+          <li><a href="/chat.html" class="nav-link">Chat with AI</a></li>
+        </ul>
+        <div class="mobile-cta">
+          <a href="/chat.html" class="btn btn-primary">Chat with AI</a>
+        </div>
+      </div>
     </div>
   </nav>
 
