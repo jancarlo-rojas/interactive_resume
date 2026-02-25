@@ -5,16 +5,13 @@ const suggestionsArea = document.getElementById('suggestions-area');
 const suggestionCards = document.querySelectorAll('.suggestion-card');
 
 function linkifyText(text) {
-  // Escape HTML and convert URLs to clickable links
   const div = document.createElement('div');
   div.textContent = text;
   let html = div.innerHTML;
   
-  // Regex to find URLs - excludes trailing parentheses and punctuation
   const urlRegex = /(https?:\/\/[^\s<>"{}|\\^`\[\]()]*)/g;
   html = html.replace(urlRegex, '<a href="$1" target="_blank" style="color:#0066cc;text-decoration:underline">$1</a>');
   
-  // Also find URLs without http/https
   const www_urlRegex = /(www\.[^\s<>"{}|\\^`\[\]()]*)/g;
   html = html.replace(www_urlRegex, '<a href="https://$1" target="_blank" style="color:#0066cc;text-decoration:underline">$1</a>');
   
@@ -77,22 +74,25 @@ form.addEventListener('submit', async (e) => {
   showTyping();
 
   try {
-    const res = await fetch('/chat', {
+    const res = await fetch('/api/chat', {  // ✅ FIXED HERE
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: text })
     });
+
     const data = await res.json();
+
     hideTyping();
+
     if (data.reply) append('bot', data.reply);
     else append('bot', data.error || 'No reply');
+
   } catch (err) {
     hideTyping();
     append('bot', 'Error: ' + err.message);
   }
 });
 
-// Add click handlers to suggestion cards
 suggestionCards.forEach(card => {
   card.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -101,4 +101,3 @@ suggestionCards.forEach(card => {
     form.dispatchEvent(new Event('submit'));
   });
 });
-
