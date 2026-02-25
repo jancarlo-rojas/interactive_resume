@@ -80,9 +80,10 @@ body{display:flex;flex-direction:column;min-height:100vh}
 
 body.home-page .container,
 body.contact-page .container{
-  max-width:1320px;
-  padding-left:14px;
-  padding-right:14px;
+  max-width:100%;
+  width:100%;
+  padding-left:10px;
+  padding-right:10px;
 }
 
 body.contact-page .contact-grid{
