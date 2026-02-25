@@ -1,5 +1,13 @@
 /* Responsive Design for Mobile Devices */
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+  body {
+    width: 200%;
+    transform: scale(0.5);
+    transform-origin: top left;
+  }
   .nav-container, .container, .hero, .highlights, .cta-section, .page-header, .content-section {
     padding-left: 12px;
     padding-right: 12px;
