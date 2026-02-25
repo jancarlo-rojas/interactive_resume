@@ -45,7 +45,8 @@
 
 @media (max-width:768px){
   .nav-toggle{display:block;color:var(--text)}
-  .nav-menu{display:none;flex-direction:column;background:var(--bg);position:absolute;left:0;right:0;top:60px;padding:12px;border-bottom:1px solid var(--border)}
+  /* hide menu by default on small screens */
+  .nav-menu{display:none !important;flex-direction:column;background:var(--bg);position:absolute;left:0;right:0;top:60px;padding:12px;border-bottom:1px solid var(--border)}
   .nav-container{position:relative}
   .nav-menu.show{display:flex}
   .nav-menu li{width:100%}
