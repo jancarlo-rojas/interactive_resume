@@ -1,4 +1,4 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+// No need for @vercel/node import, use standard req/res types
 import fs from 'fs';
 import path from 'path';
 import OpenAI from 'openai';
@@ -167,7 +167,7 @@ function flattenResume() {
   return sections.join('\n\n');
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -206,7 +206,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     messages.push({ role: 'user', content: userMessage });
     const completion = await client.chat.completions.create({
       model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
-      messages,
+      messages: messages as any,
       max_tokens: 500
     });
     const reply = completion.choices && completion.choices[0] && completion.choices[0].message
