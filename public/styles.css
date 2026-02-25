@@ -3,7 +3,7 @@
   html, body {
     overflow-x: hidden;
   }
-  body {
+  body:not(.chat-page) {
     width: 200%;
     transform: scale(0.5);
     transform-origin: top left;
@@ -76,9 +76,46 @@ body{display:flex;flex-direction:column;min-height:100vh}
 .container{flex:1}
 
 @media (max-width: 768px){
-  body{
+  body:not(.chat-page){
     min-height:200vh;
     min-height:200dvh;
+  }
+}
+
+@media (max-width: 768px) {
+  body.chat-page {
+    width: 100%;
+    transform: none;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  body.chat-page .nav-container {
+    height: auto;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  body.chat-page .nav-menu {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  body.chat-page .chat-container {
+    min-height: calc(100vh - 76px);
+    min-height: calc(100dvh - 76px);
+    padding: 8px;
+  }
+  body.chat-page .chat-container #chat {
+    width: 100%;
+    max-width: none;
+    height: calc(100vh - 92px);
+    height: calc(100dvh - 92px);
+  }
+  body.chat-page .chat-window {
+    height: auto;
+    min-height: 0;
+    flex: 1;
   }
 }
 
