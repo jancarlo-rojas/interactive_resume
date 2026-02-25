@@ -4,6 +4,11 @@
     padding-left: 10px;
     padding-right: 10px;
   }
+  /* Make nav wrap on smaller screens to avoid overflow */
+  .nav-container {padding-left:12px;padding-right:12px;height:auto;align-items:center}
+  .nav-menu{flex-wrap:wrap;gap:10px;justify-content:flex-end}
+  .nav-link{font-size:13px}
+  .nav-link-primary{padding:8px 10px}
   .hero-content h1 { font-size: 32px; }
   .hero-subtitle { font-size: 18px; }
   .highlights { grid-template-columns: 1fr; }
@@ -27,6 +32,11 @@
   .bubble { font-size: 12px; }
   .composer input { font-size: 11px; }
   .btn, .btn-primary, .btn-secondary { font-size: 11px; }
+  /* Tight screens: make nav compact and allow horizontal scroll if needed */
+  .nav-container{padding-left:8px;padding-right:8px}
+  .nav-menu{gap:8px}
+  .nav-menu{overflow:auto;-webkit-overflow-scrolling:touch}
+  .nav-menu li{flex:0 0 auto}
 }
 :root{
   --bg:#ffffff;
