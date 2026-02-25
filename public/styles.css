@@ -78,6 +78,13 @@ html,body{height:100%;margin:0;font-family:'Segoe UI',Trebuchet MS,Arial,sans-se
 body{display:flex;flex-direction:column;min-height:100vh}
 .container{flex:1}
 
+body.home-page .container{
+  max-width:100%;
+  width:100%;
+  padding-left:0;
+  padding-right:0;
+}
+
 @media (max-width: 768px){
   body:not(.chat-page){
     min-height:200vh;
@@ -197,6 +204,7 @@ body{display:flex;flex-direction:column;min-height:100vh}
 .footer-links{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
 .footer-icon{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--border);border-radius:999px;background:var(--bg);text-decoration:none;font-size:18px;line-height:1;transition:transform 0.2s ease,background 0.2s ease}
 .footer-icon:hover{background:#e0e0e0;transform:translateY(-1px)}
+.footer-icon-svg{width:18px;height:18px;display:block}
 
 /* Chat Page Specific */
 .chat-container{padding:40px 20px;min-height:calc(100vh - 120px);display:flex;align-items:center;justify-content:center}
@@ -263,4 +271,5 @@ body{display:flex;flex-direction:column;min-height:100vh}
     min-width: 0;
   }
   .footer-icon{width:34px;height:34px;font-size:16px}
+  .footer-icon-svg{width:16px;height:16px}
 }
