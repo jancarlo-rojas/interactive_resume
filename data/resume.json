@@ -1,0 +1,74 @@
+{
+  "name": "Jancarlo L. Rojas",
+  "title": "Information Technology Student | IT Consulting Track",
+  "location": "Tallahassee, FL",
+
+  "education": [
+    {
+      "school": "Florida State University",
+      "degree": "B.S. in Information Technology",
+      "start": "2023-08",
+      "expected_graduation": "2027-05",
+      "gpa": "3.44",
+      "credit_hours_completed": 80,
+      "relevant_coursework": [
+        "Web Applications Development",
+        "Problem Solving with Object-Oriented Programming",
+        "Database Concepts",
+        "Computer Science Principles"
+      ]
+    }
+  ],
+
+  "experience": [
+    {
+      "company": "Florida State University ITS – Endpoint Services",
+      "role": "IT Intern",
+      "start": "2025-08",
+      "end": "Present",
+      "highlights": [
+        "Troubleshoot and resolve end-user technical issues while managing support tickets through Salesforce",
+        "Image, configure, and deploy computers including software installation, updates, and compliance setup",
+        "Implement light automation tools to streamline daily workflows and improve IT service efficiency",
+        "Document technical procedures to maintain structured and reusable knowledge resources",
+        "Communicate technical solutions clearly to non-technical users"
+      ],
+      "focus_areas": [
+        "Endpoint management",
+        "Service workflow optimization",
+        "IT process improvement",
+        "Client-facing technical communication"
+      ]
+    },
+    {
+      "company": "Madison Social",
+      "role": "Dining Room Attendant",
+      "start": "2024-04",
+      "end": "Present",
+      "highlights": [
+        "Operate in high-volume, fast-paced environment while maintaining service quality",
+        "Coordinate with team members to ensure efficient operations",
+        "Demonstrate discipline, work ethic, and adaptability under pressure"
+      ],
+      "transferable_skills": [
+        "Team collaboration",
+        "Time management",
+        "Customer-facing communication",
+        "Performance under pressure"
+      ]
+    }
+  ],
+
+  "technical_skills": {
+    "programming": ["Java", "Python", "JavaScript", "HTML", "CSS", "PHP"],
+    "tools": ["MySQL Workbench", "Git/GitHub", "Salesforce", "Visual Studio Code"],
+    "it_foundations": [
+      "Systems troubleshooting",
+      "Networking fundamentals",
+      "Database design basics",
+      "Endpoint configuration",
+      "Workflow automation (basic)",
+      "Service ticket management"
+    ]
+  }
+}

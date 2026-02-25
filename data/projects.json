@@ -1,0 +1,39 @@
+{
+  "personal_projects": [
+    {
+      "title": "Automation & AI Exploration",
+      "description": "Experiment with automation tools and AI-driven systems to understand workflow optimization, process scalability, and operational efficiency improvements.",
+      "skills": ["Python", "Workflow automation", "AI tools"],
+      "status": "ongoing"
+    },
+    {
+      "title": "Web Technology Experiments",
+      "description": "Develop small-scale web applications to strengthen understanding of system architecture, backend/frontend interaction, and database integration.",
+      "skills": ["JavaScript", "Node.js", "React", "Database design"],
+      "status": "ongoing"
+    }
+  ],
+  "repositories": [
+    {
+      "platform": "Bitbucket",
+      "name": "LIS 4376 - AI Applications",
+      "class": "AI Applications",
+      "url": "https://bitbucket.org/jancarlorojas/lis4376/src/master/",
+      "description": "Classwork and projects for AI applications course"
+    },
+    {
+      "platform": "Bitbucket",
+      "name": "LIS 4381 - Mobile Web Development",
+      "class": "Mobile Web Development",
+      "url": "https://bitbucket.org/jancarlorojas/lis4381/src/master/",
+      "description": "Classwork and projects for mobile web development course"
+    }
+  ],
+  "project_interests": [
+    "Building scalable web solutions",
+    "Process automation and optimization",
+    "IT systems architecture",
+    "Database-driven applications",
+    "Workflow efficiency tools"
+  ]
+}

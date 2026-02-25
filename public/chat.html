@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat with AI Resume - Jancarlo L. Rojas</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo">JLR</a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/about.html" class="nav-link">About</a></li>
+        <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="/experience.html" class="nav-link">Experience</a></li>
+        <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        <li><a href="/chat.html" class="nav-link nav-link-primary">Chat with AI</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="chat-container">
+    <div id="chat">
+      <header class="chat-header">
+      <div class="title">
+        <svg class="logo" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#000000"/><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="12" fill="white" font-family="Arial" font-weight="bold">AI</text></svg>
+        <div>
+          <h1>Jancarlo's AI Assistant</h1>
+          <p class="subtitle">Ask anything about me</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="chat-window">
+      <div id="suggestions-area" class="suggestions-area">
+        <div class="suggestions-header">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg>
+          <h2>Ask the AI anything</h2>
+        </div>
+        <p class="suggestions-subtitle">Suggestions on what to ask</p>
+        <div class="suggestions-grid">
+          <button class="suggestion-card" data-prompt="What are your main technical skills?">What are your main technical skills?</button>
+          <button class="suggestion-card" data-prompt="Tell me about your work experience">Tell me about your work experience</button>
+          <button class="suggestion-card" data-prompt="What are your career goals?">What are your career goals?</button>
+        </div>
+      </div>
+      <div id="log" class="log" aria-live="polite"></div>
+    </main>
+
+    <form id="form" class="composer" autocomplete="off">
+      <input id="msg" placeholder="Ask about anything..." autocomplete="off" />
+      <button type="submit" class="send-btn" aria-label="send">Send</button>
+    </form>
+  </div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

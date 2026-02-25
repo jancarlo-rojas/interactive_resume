@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jancarlo L. Rojas - IT Consultant</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo">JLR</a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link active">Home</a></li>
+        <li><a href="/about.html" class="nav-link">About</a></li>
+        <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="/experience.html" class="nav-link">Experience</a></li>
+        <li><a href="/contact.html" class="nav-link">Contact</a></li>
+        <li><a href="/chat.html" class="nav-link nav-link-primary">Chat with AI</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Jancarlo L. Rojas</h1>
+        <p class="hero-subtitle">IT Consultant & Technology Strategist</p>
+        <p class="hero-description">
+          Helping organizations align technology with business objectives through smart IT solutions and system optimization.
+        </p>
+        <div class="hero-buttons">
+          <a href="/chat.html" class="btn btn-primary">Chat with AI Resume</a>
+          <a href="/about.html" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="highlights">
+      <div class="highlight-card">
+        <h3>📊 Analytical</h3>
+        <p>Structured problem solver with data-driven approach</p>
+      </div>
+      <div class="highlight-card">
+        <h3>⚙️ Technical</h3>
+        <p>Strong foundation in systems, networking, and automation</p>
+      </div>
+      <div class="highlight-card">
+        <h3>💼 Consulting</h3>
+        <p>Focus on technology-business alignment and efficiency</p>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Want to know more?</h2>
+      <p>Explore my portfolio or chat with an AI version of my resume</p>
+      <div class="cta-buttons">
+        <a href="/projects.html" class="btn btn-secondary">View Projects</a>
+        <a href="/experience.html" class="btn btn-secondary">See Experience</a>
+        <a href="/chat.html" class="btn btn-primary">Chat Now</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Jancarlo L. Rojas. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Highlight active nav link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.getAttribute('href') === window.location.pathname) {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
