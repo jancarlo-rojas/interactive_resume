@@ -46,8 +46,8 @@
 @media (max-width:768px){
   .nav-toggle{display:block;color:var(--text)}
   /* hide menu by default on small screens */
-  .nav-menu{display:none;flex-direction:column;background:var(--bg);position:absolute;left:0;right:0;top:60px;padding:12px;border-bottom:1px solid var(--border)}
-  .nav-container{position:relative}
+  .nav-menu{display:none;flex-direction:column;background:var(--bg);position:fixed;left:0;right:0;top:60px;padding:12px 20px;border-bottom:1px solid var(--border);z-index:120;max-height:calc(100vh - 60px);overflow-y:auto}
+  .nav-container{position:relative;z-index:130}
   .nav-menu.show{display:flex !important}
   .nav-menu li{width:100%}
   .nav-link{display:block;padding:10px;border-radius:6px}
@@ -58,6 +58,11 @@
 @media (max-width:768px){
   .nav-close{display:block;position:absolute;right:12px;top:8px;background:transparent;border:0;color:var(--text);font-size:28px;line-height:1;padding:6px;cursor:pointer}
 }
+
+/* overlay + body lock for open menu */
+body.nav-open{overflow:hidden}
+.nav-overlay{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);z-index:100}
+.nav-overlay.show{display:block}
 :root{
   --bg:#ffffff;
   --bg-secondary:#f5f5f5;
