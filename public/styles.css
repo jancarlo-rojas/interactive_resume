@@ -1,3 +1,33 @@
+/* Responsive Design for Mobile Devices */
+@media (max-width: 768px) {
+  .nav-container, .container, .hero, .highlights, .cta-section, .page-header, .content-section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .hero-content h1 { font-size: 32px; }
+  .hero-subtitle { font-size: 18px; }
+  .highlights { grid-template-columns: 1fr; }
+  .about-grid, .projects-grid, .repos-grid, .contact-grid, .skills-grid, .strength-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .chat-container { padding: 10px; }
+  .chat-container #chat { max-width: 100%; border-radius: 8px; }
+  .chat-header { padding: 10px; }
+  .chat-window { height: 220px; }
+  .composer { padding: 8px; }
+  .bubble { max-width: 100%; font-size: 14px; }
+  .btn, .btn-primary, .btn-secondary { padding: 10px 16px; font-size: 13px; }
+  .footer { padding: 10px; font-size: 12px; }
+}
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: 22px; }
+  .hero-subtitle { font-size: 14px; }
+  .chat-header h1 { font-size: 12px; }
+  .bubble { font-size: 12px; }
+  .composer input { font-size: 11px; }
+  .btn, .btn-primary, .btn-secondary { font-size: 11px; }
+}
 :root{
   --bg:#ffffff;
   --bg-secondary:#f5f5f5;
