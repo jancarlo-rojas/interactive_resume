@@ -8,8 +8,7 @@
     "openai": "^4.8.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "@vercel/node": "^3.7.0"
+    "typescript": "^5.0.0"
   },
   "engines": {
     "node": ">=18"
