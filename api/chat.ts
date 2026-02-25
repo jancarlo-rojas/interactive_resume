@@ -176,7 +176,7 @@ export default async function handler(req: any, res: any) {
     if (!userMessage) return res.status(400).json({ error: 'message required' });
 
     try {
-      const embModel = process.env.OPENAI_EMBEDDING_MODEL || 'text-embedding-3-small';
+      const embModel = process.env.OPENAI_EMBEDDING_MODEL || 'text-embedding-ada-002';
       const allText = flattenResume();
       const textChunks = chunkText(allText, 800);
       const chunkEmbeddings = [];
@@ -193,7 +193,7 @@ export default async function handler(req: any, res: any) {
       const top = scored.slice(0, 5).filter(s => s.score > 0.2);
       const finalChunks = top.length > 0 ? top : (scored.length > 0 ? [scored[0]] : []);
 
-      const systemInstruction = `You are a personable assistant representing someone's professional profile. Your role is to answer questions based on resume data, but respond in a natural, conversational way instead of just reading the resume verbatim.\n\nGuidelines:\n- Synthesize and paraphrase information rather than copying it directly\n- Use \"I\" perspective when discussing personal experiences, skills, and goals\n- Add context and brief explanations to make answers more meaningful\n- Connect related topics when relevant\n- Keep responses concise (2-3 sentences typically)\n- If asked something not in the resume, say \"I don't have that information in my resume\"\n- Show personality and enthusiasm about relevant topics\n- Use conversational language, not robotic responses`;
+      const systemInstruction = `You are a personable assistant representing someone's professional profile. Your role is to answer questions based on resume data, but respond in a natural, conversational way instead of just reading the resume verbatim.\n\nGuidelines:\n- Synthesize and paraphrase information rather than copying it directly\n- Use \"I\" perspective when discussing personal experiences, skills, and goals\n- Add context and brief explanations to make answers more meaningful\n- Connect related topics when relevant\n- Keep responses concise (2-3 sentences typically)\n- If asked something not in the resume, say \"I don't have that information stored!\"\n- Show personality and enthusiasm about relevant topics\n- Use conversational language, not robotic responses`;
 
       const messages = [
         { role: 'system', content: systemInstruction }
@@ -202,11 +202,11 @@ export default async function handler(req: any, res: any) {
         const snippets = finalChunks.map(t => `- (${t.id}) ${t.text}`).join('\n\n');
         messages.push({ role: 'system', content: `Relevant resume snippets:\n\n${snippets}` });
       } else {
-        messages.push({ role: 'system', content: 'No relevant resume snippets were found for this query.' });
+        messages.push({ role: 'system', content: 'No relevant data snippets were found for this query.' });
       }
       messages.push({ role: 'user', content: userMessage });
       const completion = await client.chat.completions.create({
-        model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
+        model: process.env.OPENAI_MODEL || 'gpt-3.5-turbo',
         messages: messages as any,
         max_tokens: 500
       });
