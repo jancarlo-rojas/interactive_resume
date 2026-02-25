@@ -1,10 +1,10 @@
 # [Interactive Resume](https://jancarlo.com)
 
-This repository contains a minimal, self-hosted "resume-only" chat demo: a web chat UI that sends user queries to a Node.js backend; the backend restricts answers to information extracted from a supplied resume. It's designed to be simple, local, and DB-free — suitable for prototyping a private resume QA assistant.
+This repository contains a minimal, self-hosted chat demo: a web chat UI that sends user queries to a Node.js backend; the backend restricts answers to information extracted from a supplied dataset. It's designed to be simple, local, and DB-free — suitable for prototyping a interactive resume.
 
 **Contents**
-- **`server/index.js`**: Express server that handles `/chat`. It loads `data/resume.json`, creates in-memory embeddings for resume snippets at startup, retrieves nearest snippets for each query, and calls the OpenAI API to generate answers constrained to those snippets.
-- **`data/resume.json`**: Example resume/profile data used to answer questions. Replace or extend this file to customize the assistant's knowledge.
+- **`server/index.js`**: Express server that handles `/chat`. It loads `data/resume.json`, creates in-memory embeddings for data snippets at startup, retrieves nearest snippets for each query, and calls the OpenAI API to generate answers constrained to those snippets.
+- **`data/resume.json`**: Example data/profile data used to answer questions. Replace or extend this file to customize the assistant's knowledge.
 - **`public/index.html`**, **`public/app.js`**, **`public/styles.css`**: Frontend chat UI — centered card layout, avatars, typing indicator, and animations. The frontend only communicates with the backend (never calls OpenAI directly).
 - **`package.json`**: Node dependencies and start scripts.
 - **`.env.example`**, **`.env`**: Environment variable examples and local secret file. **Never commit `.env`** to a public repo.
@@ -22,8 +22,8 @@ This repository contains a minimal, self-hosted "resume-only" chat demo: a web c
 - **Utilities**: `dotenv` for env vars, `cors` for simple cross-origin support.
 
 **Main features**
-- Resume-only answers: the assistant is instructed to answer only from the provided resume snippets. If the resume doesn't contain the answer, the assistant replies: "I don't know based on the resume." 
-- In-memory retrieval (no DB): the server computes embeddings for resume chunks at startup and stores them in memory. On each query it embeds the query, finds nearest chunks by cosine similarity, and includes the top snippets in the system prompt.
+- Data-only answers: the assistant is instructed to answer only from the provided data snippets. If the data doesn't contain the answer, the assistant replies: "I don't know based on the data." 
+- In-memory retrieval (no DB): the server computes embeddings for data chunks at startup and stores them in memory. On each query it embeds the query, finds nearest chunks by cosine similarity, and includes the top snippets in the system prompt.
 - Simple, privacy-friendly architecture: no external vector DB is required by default — good for local use and prototypes.
 - Sleek frontend: centered chat card, message bubbles with avatars, typing animation, and responsive layout.
 
