@@ -38,7 +38,6 @@
   .bubble { font-size: 12px; }
   .composer input { font-size: 11px; }
   .btn, .btn-primary, .btn-secondary { font-size: 11px; }
-  .contact-grid { grid-template-columns: 1fr; }
 }
 
 /* Desktop vs mobile nav */
@@ -251,3 +250,13 @@ body{display:flex;flex-direction:column;min-height:100vh}
 .chat-window::-webkit-scrollbar-track{background:var(--bg-secondary);border-radius:10px}
 .chat-window::-webkit-scrollbar-thumb{background:#d0d0d0;border-radius:10px}
 .chat-window::-webkit-scrollbar-thumb:hover{background:#999999}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+  .contact-card {
+    min-width: 0;
+  }
+}
