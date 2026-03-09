@@ -22,63 +22,124 @@
 
   <main class="container">
     <section class="page-header">
-      <h1>Projects</h1>
-      <p>Personal projects and code repositories</p>
+      <h1>Portfolio</h1>
+      <p>Work samples demonstrating technical depth, problem-solving, and growth as an IT professional</p>
     </section>
 
+    <!-- GROUP 1: Web Development & Full-Stack Projects -->
     <section class="content-section">
-      <h2>Personal Projects</h2>
+      <h2>Web Development &amp; Full-Stack Engineering</h2>
+
       <div class="projects-grid">
+
         <div class="project-card">
-          <h3>Automation & AI Exploration</h3>
-          <p>Experimenting with automation tools and AI-driven systems to understand workflow optimization, process scalability, and operational efficiency improvements.</p>
+          <h3>Interactive AI Resume Portfolio</h3>
+          <p><strong>Overview:</strong> Designed and built this interactive resume as a full-stack web application. The site features a conversational AI assistant powered by the OpenAI API that answers recruiter and employer questions about my background, skills, and experience in real time.</p>
+          <p><strong>My Role:</strong> Sole developer — responsible for architecture decisions, backend API integration, frontend design, structured data modeling, and deployment.</p>
+          <p><strong>Challenges:</strong> The biggest challenge was structuring my personal data in a way the AI could reference accurately without hallucinating. This required designing a modular JSON knowledge base covering topics like leadership, ethics, performance, and career goals, and building a context-injection system in the server-side API handler.</p>
+          <p><strong>Skills Gained:</strong> This project sharpened my ability to think like a systems architect — how data flows from a data layer through business logic to a user interface. I also developed practical experience with REST API integration, prompt engineering, and Node.js server design. Professionally, it taught me how to communicate technical work to a non-technical audience, which is a core consulting skill.</p>
           <div class="project-skills">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Workflow Automation</span>
-            <span class="skill-tag">AI Tools</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">OpenAI API</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">Systems Design</span>
+            <span class="skill-tag">Prompt Engineering</span>
           </div>
         </div>
 
         <div class="project-card">
-          <h3>Web Technology Experiments</h3>
-          <p>Developing small-scale web applications to strengthen understanding of system architecture, backend/frontend interaction, and database integration.</p>
+          <h3>User Authentication &amp; News Aggregation Platform</h3>
+          <p><strong>Overview:</strong> Built a multi-user web platform with secure login and registration, a role-based dashboard, real-time chat via WebSockets, and a news aggregation service that pulls and categorizes articles from external sources. The system handles session management, user threads, and audit logging.</p>
+          <p><strong>My Role:</strong> Full-stack developer — designed the database schema, implemented authentication middleware, wrote the news aggregator service, and structured the socket-based chat system.</p>
+          <p><strong>Challenges:</strong> Security was the primary challenge. Implementing proper authentication required careful attention to password hashing, session tokens, input validation, and protecting routes from unauthorized access. Building the SSRF-prevention middleware added another layer of complexity, requiring me to research and apply OWASP security principles directly in code.</p>
+          <p><strong>Skills Gained:</strong> This project gave me hands-on experience with real-world security concerns — not just in theory but in implementation. I learned how to structure middleware pipelines, design relational data models across multiple entities, and reason about trust boundaries in a web system. These are skills directly applicable to IT consulting, where I will advise clients on secure system design and risk mitigation.</p>
           <div class="project-skills">
-            <span class="skill-tag">JavaScript</span>
             <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">React</span>
+            <span class="skill-tag">Express.js</span>
+            <span class="skill-tag">WebSockets</span>
+            <span class="skill-tag">Authentication &amp; Authorization</span>
             <span class="skill-tag">Database Design</span>
+            <span class="skill-tag">Security (OWASP)</span>
+            <span class="skill-tag">Middleware Architecture</span>
           </div>
         </div>
+
       </div>
     </section>
 
+    <!-- GROUP 2: AI & Automation Projects -->
     <section class="content-section">
-      <h2>Class Repositories</h2>
-      <div class="repos-grid">
-        <div class="repos-grid">
-          <div class="repo-card">
-            <h3>LIS 4376 - AI Applications</h3>
-            <p>Classwork and projects for AI applications course</p>
-            <a href="https://bitbucket.org/jancarlorojas/lis4376/src/master/" target="_blank" class="btn btn-secondary">View Repository</a>
-          </div>
+      <h2>AI, Automation &amp; Data</h2>
 
-          <div class="repo-card">
-            <h3>LIS 4381 - Mobile Web Development</h3>
-            <p>Classwork and projects for mobile web development course</p>
-            <a href="https://bitbucket.org/jancarlorojas/lis4381/src/master/" target="_blank" class="btn btn-secondary">View Repository</a>
-          </div>
+      <div class="projects-grid">
 
-          <div class="repo-card">
-            <h3>💻 GitHub Profile</h3>
-            <p>Explore all my code and projects</p>
-            <a href="https://github.com/jancarlo-rojas" target="_blank" class="btn btn-secondary">Visit GitHub</a>
+        <div class="project-card">
+          <h3>LIS 4376 — AI Applications (Coursework)</h3>
+          <p><strong>Overview:</strong> A semester-long course project series exploring applied AI concepts, including machine learning model evaluation, natural language processing basics, AI ethics, and building simple AI-driven tools. Assignments progressed from understanding model inputs and outputs to evaluating real-world use cases for AI deployment.</p>
+          <p><strong>My Role:</strong> Student researcher and developer — completed individual projects analyzing AI system behavior, comparing model outputs, and proposing responsible AI implementation strategies for organizational contexts.</p>
+          <p><strong>Challenges:</strong> Translating abstract AI concepts into concrete, implementable solutions required bridging the gap between theory and practice. Evaluating model outputs critically — rather than accepting them at face value — was a skill I had to consciously develop throughout the course.</p>
+          <p><strong>Skills Gained:</strong> I came away with the ability to evaluate AI tools through a business and ethical lens, not just a technical one. I can now assess where AI adds value, where it introduces risk, and how to communicate those tradeoffs to stakeholders — a skill central to IT advisory work.</p>
+          <div class="project-skills">
+            <span class="skill-tag">Machine Learning Concepts</span>
+            <span class="skill-tag">NLP</span>
+            <span class="skill-tag">AI Ethics</span>
+            <span class="skill-tag">Critical Evaluation</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Business Analysis</span>
           </div>
+        </div>
+
+        <div class="project-card">
+          <h3>Workflow Automation &amp; Process Optimization</h3>
+          <p><strong>Overview:</strong> An ongoing personal project exploring automation tools and frameworks to identify where repetitive manual processes can be replaced or augmented by scripts and AI-assisted workflows. Experiments have included task scheduling, data transformation pipelines, and tool integrations.</p>
+          <p><strong>My Role:</strong> Independent researcher and builder — self-directed exploration with no formal requirements, meaning I had to define problems worth solving and design my own approach.</p>
+          <p><strong>Challenges:</strong> The lack of a defined specification made this both freeing and difficult. I had to practice requirements-gathering on myself — identifying which manual tasks were genuinely worth automating versus which were better left as-is, which mirrors the kinds of assessments IT consultants make for clients.</p>
+          <p><strong>Skills Gained:</strong> Developed practical skills in Python scripting, process mapping, and evaluating ROI on automation investments. More importantly, I internalized the consultant mindset: not every problem needs a technical solution, and the best solution is the one that actually gets adopted and maintained.</p>
+          <div class="project-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Workflow Automation</span>
+            <span class="skill-tag">Process Mapping</span>
+            <span class="skill-tag">AI Tools</span>
+            <span class="skill-tag">Problem Framing</span>
+            <span class="skill-tag">Analytical Thinking</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GROUP 3: Mobile & UI Development -->
+    <section class="content-section">
+      <h2>Mobile &amp; User Interface Development</h2>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <h3>LIS 4381 — Mobile Web Development (Coursework)</h3>
+          <p><strong>Overview:</strong> Course assignments and projects focused on building responsive, mobile-first web applications. Topics covered included viewport optimization, touch-friendly UI patterns, progressive enhancement, and cross-device testing. Projects ranged from single-page layouts to multi-page responsive apps.</p>
+          <p><strong>My Role:</strong> Developer and designer — responsible for both the visual design decisions and the underlying code, including responsive CSS, JavaScript interactions, and accessibility considerations.</p>
+          <p><strong>Challenges:</strong> Designing for multiple screen sizes simultaneously forced me to think structurally rather than just visually. Getting a layout to work beautifully on both a 320px phone screen and a 1440px monitor requires discipline and a clear understanding of how browsers calculate layout — a challenge I underestimated early in the course.</p>
+          <p><strong>Skills Gained:</strong> Gained fluency in responsive design principles, CSS grid and flexbox, and mobile UX best practices. I also improved my ability to look at a design from the user's perspective — prioritizing what matters on a small screen forces you to cut the noise, which is a universally useful skill in both design and communication.</p>
+          <div class="project-skills">
+            <span class="skill-tag">Responsive Design</span>
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">CSS Grid &amp; Flexbox</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Mobile UX</span>
+            <span class="skill-tag">Cross-Device Testing</span>
+            <span class="skill-tag">Accessibility</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <section class="cta-section">
       <h2>Curious to know more?</h2>
-      <a href="/chat.html" class="btn btn-primary">Chat with AI about my projects</a>
+      <p>Ask the AI assistant about any of these projects in detail.</p>
+      <a href="/chat.html" class="btn btn-primary">Chat with AI about my work</a>
     </section>
   </main>
 
