@@ -180,6 +180,8 @@ body.home-page .container{
 
 /* Cards */
 .project-card,.repo-card,.contact-card,.strength-item{background:var(--bg-secondary);padding:20px;border-radius:10px;border:1px solid var(--border)}
+.repo-card{display:flex;flex-direction:column}
+.repo-card .btn{margin-top:auto;align-self:flex-start}
 .project-card h3,.repo-card h3,.contact-card h3{margin:0 0 10px;font-size:18px}
 .project-card p,.repo-card p,.contact-card p{margin:0 0 15px;color:var(--text-light)}
 .project-skills{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
