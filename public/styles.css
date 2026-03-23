@@ -2,11 +2,7 @@
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
-  }
-  body:not(.chat-page) {
-    width: 200%;
-    transform: scale(0.5);
-    transform-origin: top left;
+    width: 100%;
   }
   .nav-container, .container, .hero, .highlights, .cta-section, .page-header, .content-section {
     padding-left: 12px;
@@ -89,12 +85,6 @@ body.home-page .container{
   padding-right:0;
 }
 
-@media (max-width: 768px){
-  body:not(.chat-page){
-    min-height:200vh;
-    min-height:200dvh;
-  }
-}
 
 @media (max-width: 768px) {
   body.chat-page {
