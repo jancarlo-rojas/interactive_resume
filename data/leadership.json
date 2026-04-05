@@ -1,12 +1,14 @@
 {
-  "leadership_style": "Lead by example through performance and discipline.",
+  "leadership_style": "Lead through systems thinking and demonstrated outcomes. I build clarity by making architecture explicit — when the structure of a system is visible, decisions become easier for everyone on the team, technical or not.",
   "leadership_strengths": [
-    "High accountability",
-    "Structured thinking",
-    "Focus on measurable outcomes"
+    "Making complex system decisions legible to non-technical stakeholders",
+    "Driving toward measurable outcomes rather than process theater",
+    "High accountability for end-to-end system quality, not just individual components",
+    "Designing processes that other people can follow and extend — not just solutions that work once"
   ],
   "leadership_development_goals": [
-    "Delegation",
-    "Managing diverse team dynamics"
+    "Building influence in consulting contexts without formal authority",
+    "Managing stakeholder expectations across multiple organizational levels",
+    "Developing delegation instincts for systems work — knowing when to hand off vs. stay hands-on"
   ]
 }

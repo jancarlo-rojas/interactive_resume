@@ -1,6 +1,6 @@
 {
   "name": "Jancarlo L. Rojas",
-  "title": "Information Technology Student | IT Consulting Track",
+  "title": "Systems & AI Consulting | IT Architecture | Workflow Automation",
   "location": "Tallahassee, FL",
 
   "education": [
@@ -15,7 +15,9 @@
         "Web Applications Development",
         "Problem Solving with Object-Oriented Programming",
         "Database Concepts",
-        "Computer Science Principles"
+        "Computer Science Principles",
+        "AI Applications (LIS 4376)",
+        "Mobile Web Development"
       ]
     }
   ],
@@ -27,16 +29,17 @@
       "start": "2025-08",
       "end": "Present",
       "highlights": [
-        "Troubleshoot and resolve end-user technical issues while managing support tickets through Salesforce",
-        "Image, configure, and deploy computers including software installation, updates, and compliance setup",
-        "Implement light automation tools to streamline daily workflows and improve IT service efficiency",
-        "Document technical procedures to maintain structured and reusable knowledge resources",
-        "Communicate technical solutions clearly to non-technical users"
+        "Evaluate existing IT workflows and implement targeted automation to reduce manual overhead and improve service delivery speed",
+        "Manage endpoint lifecycle: imaging, configuration, software deployment, compliance validation, and system documentation",
+        "Identify process gaps in support ticket workflows and design structured improvements using Salesforce",
+        "Apply AI-assisted tooling to streamline repetitive IT tasks and build reusable automation scripts",
+        "Communicate system-level solutions clearly to non-technical stakeholders — translating architecture decisions into plain outcomes"
       ],
       "focus_areas": [
-        "Endpoint management",
-        "Service workflow optimization",
-        "IT process improvement",
+        "Systems workflow analysis and optimization",
+        "AI-assisted IT automation",
+        "Endpoint architecture and lifecycle management",
+        "Process consulting for IT service efficiency",
         "Client-facing technical communication"
       ]
     },
@@ -46,13 +49,13 @@
       "start": "2024-04",
       "end": "Present",
       "highlights": [
-        "Operate in high-volume, fast-paced environment while maintaining service quality",
-        "Coordinate with team members to ensure efficient operations",
-        "Demonstrate discipline, work ethic, and adaptability under pressure"
+        "Operate effectively in high-volume, fast-paced environment requiring real-time decision making",
+        "Coordinate cross-functionally to maintain operational throughput under pressure",
+        "Demonstrate discipline, adaptability, and consistent performance in demanding conditions"
       ],
       "transferable_skills": [
-        "Team collaboration",
-        "Time management",
+        "Operational efficiency under constraints",
+        "Team coordination",
         "Customer-facing communication",
         "Performance under pressure"
       ]
@@ -60,15 +63,30 @@
   ],
 
   "technical_skills": {
-    "programming": ["Java", "Python", "JavaScript", "HTML", "CSS", "PHP"],
-    "tools": ["MySQL Workbench", "Git/GitHub", "Salesforce", "Visual Studio Code"],
+    "programming": ["Python", "JavaScript", "Java", "HTML", "CSS", "PHP", "SQL"],
+    "ai_and_automation": [
+      "LLM integration (OpenAI API, Claude API)",
+      "Prompt engineering for workflow automation",
+      "RAG pipeline design and implementation",
+      "AI tool evaluation and deployment",
+      "Workflow automation scripting",
+      "Process optimization using AI-assisted tooling"
+    ],
+    "systems_and_architecture": [
+      "System architecture design and evaluation",
+      "API design and integration",
+      "Database design and optimization",
+      "Endpoint systems management",
+      "IT infrastructure consulting",
+      "Scalable system planning"
+    ],
+    "tools": ["MySQL Workbench", "Git/GitHub", "Salesforce", "Visual Studio Code", "Node.js", "REST APIs"],
     "it_foundations": [
-      "Systems troubleshooting",
+      "Systems troubleshooting and root cause analysis",
       "Networking fundamentals",
-      "Database design basics",
-      "Endpoint configuration",
-      "Workflow automation (basic)",
-      "Service ticket management"
+      "Endpoint configuration and deployment",
+      "Service ticket management and workflow design",
+      "IT process documentation"
     ]
   }
 }

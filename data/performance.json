@@ -1,9 +1,9 @@
 {
   "competitive_traits": [
-    "Goal-oriented",
-    "Motivated by measurable success",
-    "Thrives in performance-based systems"
+    "Driven by measurable improvement — in systems, in processes, and in personal execution",
+    "Approaches technical challenges with the same mindset as competitive performance: study the system, find the inefficiency, optimize it",
+    "Sets specific targets and tracks progress — vague goals don't motivate me, measured outcomes do"
   ],
-  "risk_profile": "Calculated and analytical before action.",
-  "growth_orientation": "Actively seeks skill expansion through experimentation and iteration."
+  "risk_profile": "Calculated and architecture-first. Before recommending or implementing any change to a system, I map the dependencies and downstream effects. AI implementation especially requires this discipline — knowing what breaks when a model behaves unexpectedly is as important as knowing what it can do.",
+  "growth_orientation": "Actively building AI and systems architecture depth through hands-on implementation. I learn by building real things — RAG pipelines, automation scripts, full-stack systems — not just reading about them. Each project is a test of whether my mental model of a system is actually correct."
 }

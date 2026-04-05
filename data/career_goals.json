@@ -1,35 +1,37 @@
 {
   "career_vision": {
-    "target_path": "IT Consulting & Technology Advisory",
-    "career_stage": "Student transitioning to professional IT consultant",
-    "timeline": "Post-graduation (May 2027) into consulting role"
+    "target_path": "Systems Consulting & IT Architecture with AI Specialization",
+    "career_stage": "Student building toward consulting and systems architecture roles",
+    "timeline": "Post-graduation (May 2027) into consulting or systems advisory role",
+    "focus": "Help organizations understand, architect, and improve their existing systems — with AI and automation as the primary lever for efficiency gains"
   },
   "professional_focus_areas": [
-    "Technology-business alignment and strategy",
-    "IT systems optimization and modernization",
-    "AI-driven workflow enhancement",
-    "Operational efficiency and cost reduction",
-    "Process improvement consulting"
+    "Systems architecture evaluation and design",
+    "AI implementation into existing business workflows",
+    "IT consulting focused on measurable operational outcomes",
+    "Automation of repetitive processes using AI tooling",
+    "Translating technical architecture into business value",
+    "Digital transformation advisory for mid-size organizations"
   ],
   "long_term_goals": [
-    "Advise organizations on scalable IT systems implementation",
-    "Drive technology strategy that improves measurable business performance",
-    "Build expertise in efficiency-driven technology solutions",
-    "Become a trusted advisor on digital transformation",
-    "Help companies align technology with business objectives"
+    "Advise organizations on how to integrate AI into their existing systems without unnecessary disruption",
+    "Design scalable IT architectures that are built for automation from the ground up",
+    "Become a trusted systems consultant who bridges deep technical knowledge with strategic business thinking",
+    "Help companies identify where AI creates real efficiency — and where it doesn't",
+    "Lead technology modernization engagements that produce measurable ROI"
   ],
   "ideal_work_environment": [
-    "Collaborative consulting environment",
-    "Organizations focused on operational efficiency",
-    "Roles combining technical depth with business consulting",
-    "Teams that value analytical thinking and process improvement",
-    "Culture that rewards continuous learning and innovation"
+    "Consulting firms or internal strategy teams working on systems modernization",
+    "Organizations actively integrating AI into their operations",
+    "Roles that combine hands-on architecture work with client advisory",
+    "Teams that value analytical rigor and measurable outcomes over hype",
+    "Environments that reward continuous learning and experimentation"
   ],
   "immediate_next_steps": [
-    "Complete IT internship at FSU (current focus)",
-    "Build consulting-relevant portfolio projects",
-    "Develop deeper understanding of business operations",
-    "Network within consulting and IT advisory communities",
-    "Gain experience with enterprise systems and processes"
+    "Deepen AI implementation skills — RAG systems, LLM integration, agentic workflows",
+    "Build portfolio demonstrating systems design and AI-in-production experience",
+    "Complete IT internship focused on workflow automation and systems optimization",
+    "Develop consulting communication skills: translating architecture into business language",
+    "Explore enterprise AI deployment patterns and real-world constraints"
   ]
 }

@@ -1,15 +1,21 @@
 {
   "personal_projects": [
     {
-      "title": "Automation & AI Exploration",
-      "description": "Experiment with automation tools and AI-driven systems to understand workflow optimization, process scalability, and operational efficiency improvements.",
-      "skills": ["Python", "Workflow automation", "AI tools"],
-      "status": "ongoing"
+      "title": "AI-Powered Interactive Resume (this site)",
+      "description": "Designed and built this site as a full-stack demonstration of AI integration into a practical system. The core is a RAG (Retrieval-Augmented Generation) pipeline: structured data about my background is embedded using OpenAI's embedding models, and user questions are matched to the most semantically relevant context before being passed to an LLM. The result is a conversational AI that answers questions accurately from a custom knowledge base rather than hallucinating. Built on Node.js, deployed on Vercel. This project reflects the exact kind of work I want to do professionally — taking an existing communication problem (a static resume) and solving it by integrating AI into the workflow.",
+      "skills": ["RAG pipeline design", "OpenAI API", "LLM integration", "Node.js", "Systems architecture", "Vercel deployment"],
+      "status": "live"
     },
     {
-      "title": "Web Technology Experiments",
-      "description": "Develop small-scale web applications to strengthen understanding of system architecture, backend/frontend interaction, and database integration.",
-      "skills": ["JavaScript", "Node.js", "React", "Database design"],
+      "title": "News Aggregation & User Platform",
+      "description": "Built a full-stack platform that pulls from multiple global news sources, categorizes articles into topic threads, and lets users explore without single-outlet bias. Added user accounts, real-time WebSocket chat, and a dashboard. I owned everything: database schema, authentication architecture, background aggregator, real-time layer, and frontend. The security architecture — password hashing, session token design, route protection — required the most research and produced the most durable learning. This was my first experience designing a system end-to-end and understanding how each layer depends on the others.",
+      "skills": ["System architecture", "Node.js", "Express.js", "WebSockets", "MongoDB", "Authentication design", "REST API design"],
+      "status": "completed"
+    },
+    {
+      "title": "AI Workflow Automation Experiments",
+      "description": "Ongoing series of experiments integrating AI tooling into real workflows — automating repetitive tasks, building LLM-assisted scripts, and evaluating where AI genuinely reduces friction versus where it adds complexity. Focus is on practical implementation: what does it actually take to get an AI tool working reliably inside an existing process? Projects include prompt engineering for structured output, AI-assisted documentation generation, and lightweight agentic task runners.",
+      "skills": ["Python", "OpenAI API", "Prompt engineering", "Workflow automation", "LLM integration", "Process optimization"],
       "status": "ongoing"
     }
   ],
@@ -19,21 +25,22 @@
       "name": "LIS 4376 - AI Applications",
       "class": "AI Applications",
       "url": "https://bitbucket.org/jancarlorojas/lis4376/src/master/",
-      "description": "Classwork and projects for AI applications course"
+      "description": "Coursework for Applied AI — covering ML model evaluation, NLP, AI ethics, and real-world deployment considerations. Emphasis on critically evaluating AI outputs, not just implementing them. Developed ability to assess where AI creates genuine value versus where it introduces risk or unnecessary complexity."
     },
     {
       "platform": "Bitbucket",
       "name": "LIS 4381 - Mobile Web Development",
       "class": "Mobile Web Development",
       "url": "https://bitbucket.org/jancarlorojas/lis4381/src/master/",
-      "description": "Classwork and projects for mobile web development course"
+      "description": "Responsive, mobile-first web applications with focus on system architecture, CSS layout systems, and cross-device performance. Reinforced the discipline of stripping solutions to their minimum effective form — a principle that applies directly to systems consulting."
     }
   ],
   "project_interests": [
-    "Building scalable web solutions",
-    "Process automation and optimization",
-    "IT systems architecture",
-    "Database-driven applications",
-    "Workflow efficiency tools"
+    "AI integration into existing enterprise systems",
+    "RAG pipeline design for organizational knowledge bases",
+    "Workflow automation using LLMs and scripting",
+    "Systems architecture for scalable and maintainable IT infrastructure",
+    "Consulting tools that translate system data into business insight",
+    "Agentic AI workflows for process automation"
   ]
 }
