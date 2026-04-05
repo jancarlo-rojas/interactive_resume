@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Case Study - Jancarlo L. Rojas</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* Page-specific layout */
+    .cs-section { margin: 50px 0; padding: 30px 0; border-bottom: 1px solid var(--border); }
+    .cs-section:last-of-type { border-bottom: none; }
+    .cs-section h2 { font-size: 26px; margin: 0 0 8px; }
+    .cs-section .section-lead { color: var(--text-light); font-size: 15px; margin: 0 0 28px; line-height: 1.6; max-width: 720px; }
+
+    /* Tag grid */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+
+    /* Two-col layout */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* Info card */
+    .info-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 22px; }
+    .info-card h4 { margin: 0 0 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); }
+    .info-card p { margin: 0 0 10px; font-size: 14px; line-height: 1.6; color: var(--text); }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card ul { margin: 0; padding-left: 18px; }
+    .info-card li { font-size: 14px; line-height: 1.7; color: var(--text); }
+
+    /* Stack diagram */
+    .stack-diagram { display: flex; flex-direction: column; gap: 2px; max-width: 560px; }
+    .stack-layer { display: flex; align-items: center; gap: 14px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 13px; }
+    .stack-layer .layer-label { font-weight: 600; min-width: 120px; color: var(--text); }
+    .stack-layer .layer-detail { color: var(--text-light); }
+    .stack-layer .layer-icon { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .layer-net { --dot: #4a9eff; }
+    .layer-proxy { --dot: #a78bfa; }
+    .layer-app { --dot: #34d399; }
+    .layer-data { --dot: #fbbf24; }
+    .layer-admin { --dot: #f87171; }
+    .stack-layer .layer-icon { background: var(--dot, #888); }
+    .stack-arrow { text-align: center; color: var(--border); font-size: 18px; line-height: 1; padding: 0; }
+
+    /* Flow diagram */
+    .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 0; margin: 20px 0; }
+    .flow-node { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 12px; font-weight: 600; color: var(--text); white-space: nowrap; flex-shrink: 0; }
+    .flow-node.accent { border-color: #4a9eff; color: #4a9eff; }
+    .flow-node.green { border-color: #34d399; color: #34d399; }
+    .flow-node.yellow { border-color: #fbbf24; color: #fbbf24; }
+    .flow-node.purple { border-color: #a78bfa; color: #a78bfa; }
+    .flow-arrow { color: var(--text-light); font-size: 16px; padding: 0 6px; flex-shrink: 0; }
+    .flow-break { width: 100%; height: 10px; }
+
+    /* Enrichment pipeline - vertical */
+    .pipeline { display: flex; flex-direction: column; align-items: flex-start; gap: 0; max-width: 680px; }
+    .pipeline-step { display: flex; gap: 16px; align-items: flex-start; }
+    .pipeline-step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .pipeline-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--text-light); margin-top: 4px; flex-shrink: 0; }
+    .pipeline-dot.active { background: #4a9eff; }
+    .pipeline-dot.ai { background: #a78bfa; }
+    .pipeline-dot.cache { background: #34d399; }
+    .pipeline-dot.feedback { background: #fbbf24; }
+    .pipeline-line { width: 2px; flex: 1; background: var(--border); min-height: 24px; margin: 4px 0; }
+    .pipeline-content { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 8px; flex: 1; }
+    .pipeline-content h5 { margin: 0 0 6px; font-size: 13px; font-weight: 700; color: var(--text); }
+    .pipeline-content p { margin: 0; font-size: 12px; line-height: 1.6; color: var(--text-light); }
+
+    /* CI/CD flow */
+    .cicd-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    @media (max-width: 768px) { .cicd-flow { grid-template-columns: repeat(2, 1fr); } }
+    .cicd-step { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+    .cicd-step .step-num { font-size: 11px; color: var(--text-light); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .cicd-step .step-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .cicd-step .step-detail { font-size: 11px; color: var(--text-light); margin-top: 4px; }
+
+    /* Security layers */
+    .security-layers { display: flex; flex-direction: column; gap: 6px; max-width: 600px; }
+    .security-layer { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); font-size: 13px; }
+    .security-layer .sl-num { font-weight: 700; font-size: 11px; color: var(--text-light); min-width: 24px; }
+    .security-layer .sl-name { font-weight: 700; min-width: 100px; }
+    .security-layer .sl-detail { color: var(--text-light); }
+    .sl-1 { background: rgba(74, 158, 255, 0.05); border-color: rgba(74, 158, 255, 0.2); }
+    .sl-2 { background: rgba(167, 139, 250, 0.05); border-color: rgba(167, 139, 250, 0.2); }
+    .sl-3 { background: rgba(52, 211, 153, 0.05); border-color: rgba(52, 211, 153, 0.2); }
+    .sl-4 { background: rgba(251, 191, 36, 0.05); border-color: rgba(251, 191, 36, 0.2); }
+    .sl-5 { background: rgba(248, 113, 113, 0.05); border-color: rgba(248, 113, 113, 0.2); }
+
+    /* Services grid */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .service-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+    .service-card h4 { margin: 0 0 8px; font-size: 15px; }
+    .service-card .service-role { font-size: 11px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .service-card p { margin: 0; font-size: 13px; color: var(--text-light); line-height: 1.5; }
+
+    /* Callout box */
+    .callout { background: rgba(74, 158, 255, 0.06); border: 1px solid rgba(74, 158, 255, 0.25); border-radius: 10px; padding: 18px 20px; margin: 20px 0; }
+    .callout p { margin: 0; font-size: 14px; line-height: 1.7; color: var(--text); }
+    .callout strong { color: #4a9eff; }
+
+    /* Skills showcase */
+    .skills-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 16px; }
+    .skill-group h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin: 0 0 10px; }
+
+    /* Hero banner for case study */
+    .cs-hero { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 36px; margin-bottom: 40px; }
+    .cs-hero h1 { margin: 0 0 10px; font-size: 30px; }
+    .cs-hero .cs-hero-sub { font-size: 15px; color: var(--text-light); margin: 0 0 20px; line-height: 1.6; max-width: 680px; }
+    .cs-badge-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cs-badge { font-size: 11px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-light); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo">JLR</a>
+      <ul class="nav-menu desktop-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/about.html" class="nav-link">About</a></li>
+        <li><a href="/projects.html" class="nav-link">Projects</a></li>
+        <li><a href="/experience.html" class="nav-link">Experience</a></li>
+        <li><a href="/case-study.html" class="nav-link active">Case Study</a></li>
+        <li><a href="/chat.html" class="nav-link nav-link-primary">Chat with AI</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="page-header">
+      <h1>System Design Case Study</h1>
+      <p>A production-grade fintech product operated by a single engineer</p>
+    </section>
+
+    <!-- Hero summary -->
+    <div class="cs-hero">
+      <h1>Single-Person Engineering Operation</h1>
+      <p class="cs-hero-sub">
+        A full-stack financial technology product — mobile app, backend API, data enrichment pipeline, AI integrations, and infrastructure — designed, built, and operated by one person. Every architectural decision was made with the constraint of solo operation in mind: high automation, minimal manual intervention, strong security defaults, and systems that explain themselves.
+      </p>
+      <div class="cs-badge-row">
+        <span class="cs-badge">React Native / Expo</span>
+        <span class="cs-badge">Node.js / TypeScript</span>
+        <span class="cs-badge">PostgreSQL + Prisma</span>
+        <span class="cs-badge">Docker Compose</span>
+        <span class="cs-badge">GitHub Actions CI/CD</span>
+        <span class="cs-badge">Cloudflare CDN + WAF</span>
+        <span class="cs-badge">Tailscale VPN</span>
+        <span class="cs-badge">OpenAI GPT-4o-mini</span>
+        <span class="cs-badge">Plaid API</span>
+        <span class="cs-badge">Twilio Verify</span>
+        <span class="cs-badge">Stripe</span>
+        <span class="cs-badge">AES-256-GCM Encryption</span>
+        <span class="cs-badge">GDPR / CCPA Compliant</span>
+      </div>
+    </div>
+
+    <!-- Infrastructure -->
+    <section class="cs-section">
+      <h2>Infrastructure & Hosting</h2>
+      <p class="section-lead">Self-hosted on a dedicated Linux server, with Cloudflare sitting in front for CDN, DDoS protection, and WAF. Admin access is gated through Tailscale — no public SSH exposure. Every service runs in Docker containers with explicit restart policies and health checks.</p>
+
+      <div class="two-col">
+        <div>
+          <p style="font-size:13px;color:var(--text-light);margin:0 0 10px;">Traffic flow — internet to application</p>
+          <div class="stack-diagram">
+            <div class="stack-layer layer-net">
+              <div class="layer-icon"></div>
+              <span class="layer-label">Cloudflare Edge</span>
+              <span class="layer-detail">DDoS, WAF, CDN, TLS termination</span>
+            </div>
+            <div class="stack-arrow">↓</div>
+            <div class="stack-layer layer-proxy">
+              <div class="layer-icon"></div>
+              <span class="layer-label">nginx</span>
+              <span class="layer-detail">Origin TLS, rate limiting, security headers</span>
+            </div>
+            <div class="stack-arrow">↓</div>
+            <div class="stack-layer layer-app">
+              <div class="layer-icon"></div>
+              <span class="layer-label">Docker: API</span>
+              <span class="layer-detail">Express / TypeScript, port 127.0.0.1:8101</span>
+            </div>
+            <div class="stack-arrow">↓</div>
+            <div class="stack-layer layer-data">
+              <div class="layer-icon"></div>
+              <span class="layer-label">Docker: PostgreSQL</span>
+              <span class="layer-detail">Port 127.0.0.1:5432, named volume, no external exposure</span>
+            </div>
+            <div class="stack-arrow">↑</div>
+            <div class="stack-layer layer-admin">
+              <div class="layer-icon"></div>
+              <span class="layer-label">Tailscale VPN</span>
+              <span class="layer-detail">Admin-only access. SSH, DB tooling, deploy scripts</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="info-card">
+            <h4>Cloudflare Setup</h4>
+            <p>Cloudflare acts as the first layer — handling TLS at the edge, absorbing DDoS traffic, and enforcing WAF rules before a single packet reaches the server. A Cloudflare Origin Certificate is installed on the server for double-TLS termination, ensuring the connection is encrypted end-to-end even between Cloudflare and the origin.</p>
+          </div>
+          <div class="info-card">
+            <h4>Tailscale for Admin</h4>
+            <p>No port 22 is publicly exposed. All administrative access — deploys, database inspection, log tailing, script execution — goes through a Tailscale VPN mesh. The server is only reachable by authenticated devices on the private network. This eliminates an entire category of attack surface.</p>
+          </div>
+          <div class="info-card">
+            <h4>Docker Architecture</h4>
+            <ul>
+              <li>Two containers: API (Node.js) and PostgreSQL 16</li>
+              <li>All ports bound to <code>127.0.0.1</code> — nothing exposed to the public network</li>
+              <li>Named volume for database persistence</li>
+              <li>Health checks on both containers (HTTP + pg_isready)</li>
+              <li>Multi-stage Dockerfile: builder compiles TypeScript, runner is lean prod image with non-root user</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CI/CD & Git -->
+    <section class="cs-section">
+      <h2>Git Workflow & CI/CD Pipeline</h2>
+      <p class="section-lead">GitHub is the source of truth. Every push to <code>master</code> triggers a GitHub Actions pipeline with self-hosted runners installed directly on the staging and production servers. No third-party deployment service — the runner has direct access to run deploy scripts on the machine.</p>
+
+      <div class="cicd-flow" style="margin-bottom:24px;">
+        <div class="cicd-step">
+          <div class="step-num">Step 1</div>
+          <div class="step-name">Push to master</div>
+          <div class="step-detail">GitHub Actions triggered on push or manual dispatch</div>
+        </div>
+        <div class="cicd-step">
+          <div class="step-num">Step 2</div>
+          <div class="step-name">Test Job</div>
+          <div class="step-detail">npm ci → lint → typecheck → test suite</div>
+        </div>
+        <div class="cicd-step">
+          <div class="step-num">Step 3</div>
+          <div class="step-name">Deploy Staging</div>
+          <div class="step-detail">Self-hosted runner: git pull → deploy.sh → health check</div>
+        </div>
+        <div class="cicd-step">
+          <div class="step-num">Step 4</div>
+          <div class="step-name">Deploy Prod</div>
+          <div class="step-detail">Manual gate only — requires explicit workflow_dispatch approval</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="info-card">
+          <h4>Self-Hosted Runners</h4>
+          <p>GitHub Actions runners are installed on the actual servers — staging and production each have their own. This means deployments don't require exposing any ports or SSH keys to GitHub's infrastructure. The runner has the necessary local permissions to pull code, run Docker commands, and execute deploy scripts.</p>
+          <p>The deploy script runs <code>prisma migrate deploy</code> (safe, additive-only migrations in production), rebuilds the container, and waits for the health check to pass before marking the deployment complete.</p>
+        </div>
+        <div class="info-card">
+          <h4>Staging → Production Gate</h4>
+          <p>Staging deploys automatically on every push to <code>master</code>. Production deployment requires a manual <code>workflow_dispatch</code> with an explicit confirmation input (<code>deploy_prod: yes</code>). This creates a hard human gate between staging validation and production release — a small but meaningful safety mechanism when operating alone.</p>
+          <p>The production compose file pulls a pre-built image by <code>IMAGE_TAG</code> from GitHub Container Registry (ghcr.io) rather than building on the server — keeping deploys fast and reproducible.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security -->
+    <section class="cs-section">
+      <h2>Security Architecture</h2>
+      <p class="section-lead">Defense-in-depth across five distinct layers. Each layer assumes the previous one can fail. No single point of trust — sensitive data is encrypted at rest regardless of whether the database is accessed legitimately or not.</p>
+
+      <div class="security-layers" style="margin-bottom:24px;">
+        <div class="security-layer sl-1">
+          <span class="sl-num">L1</span>
+          <span class="sl-name">Network</span>
+          <span class="sl-detail">Cloudflare DDoS + WAF, TLS 1.2/1.3 only, all ports localhost-bound</span>
+        </div>
+        <div class="security-layer sl-2">
+          <span class="sl-num">L2</span>
+          <span class="sl-name">HTTP</span>
+          <span class="sl-detail">Helmet.js headers (HSTS, CSP, X-Frame-Options), nginx rate limiting (10 req/s per IP, burst 20), CORS whitelist</span>
+        </div>
+        <div class="security-layer sl-3">
+          <span class="sl-num">L3</span>
+          <span class="sl-name">Auth</span>
+          <span class="sl-detail">Passwordless phone OTP via Twilio, JWT HS256 (30-day expiry), tokens stored as SHA-256 hash only — raw token never persisted</span>
+        </div>
+        <div class="security-layer sl-4">
+          <span class="sl-num">L4</span>
+          <span class="sl-name">Data</span>
+          <span class="sl-detail">AES-256-GCM encryption at rest for all sensitive fields: Plaid access tokens, merchant names, transaction data, phone numbers, IP addresses</span>
+        </div>
+        <div class="security-layer sl-5">
+          <span class="sl-num">L5</span>
+          <span class="sl-name">External</span>
+          <span class="sl-detail">Stripe webhook signature verification, Plaid read-only access scope, per-endpoint rate limits (OTP: 3/10min, sync: 10/5min)</span>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="info-card">
+          <h4>Encryption at Rest</h4>
+          <p>Every piece of sensitive data is encrypted with AES-256-GCM before it touches the database. This includes Plaid access tokens, transaction merchant names, the global merchant name cache, phone numbers stored in OTP sessions, and user IP addresses captured for consent records. The encryption key is a 64-character hex string validated at startup — the server refuses to start without it.</p>
+        </div>
+        <div class="info-card">
+          <h4>Compliance Framework</h4>
+          <p>GDPR and CCPA compliance is built into the data model, not bolted on afterward. A <code>Consent</code> table records explicit consent at sign-up: timestamp, IP address, terms version, privacy version, data processing consent, and financial data access consent (Plaid). Full account deletion cascades cleanly through all tables and revokes Plaid access tokens. Consent is not optional — it's a precondition for auth.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Enrichment — THE MAIN SECTION -->
+    <section class="cs-section">
+      <h2>Data Enrichment Pipeline</h2>
+      <p class="section-lead">Raw transaction data from banks is noisy and inconsistent. The enrichment layer transforms it into structured, reliable, and increasingly accurate information. This is the core intelligence layer of the system — not the AI features visible to users, but the infrastructure that makes those features trustworthy.</p>
+
+      <div class="callout">
+        <p><strong>The core insight:</strong> Plaid provides category labels, but they're coarse and inconsistent across institutions. A merchant appearing as "AMZN*" at one bank and "AMAZON.COM" at another needs to resolve to the same canonical entity. Enrichment is what makes that happen — and it compounds over time as more users interact with the same merchants.</p>
+      </div>
+
+      <p style="font-size:13px;color:var(--text-light);margin:20px 0 12px;">Enrichment pipeline — from raw transaction to structured insight</p>
+      <div class="pipeline">
+
+        <div class="pipeline-step">
+          <div class="pipeline-step-left">
+            <div class="pipeline-dot active"></div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <h5>1 — Ingest: Cursor-Based Bank Sync</h5>
+            <p>Plaid's transaction API uses a cursor for incremental sync. Each sync call returns only new/modified/removed transactions since the last cursor position. Added and modified transactions enter the enrichment queue. Removed transactions are deleted. The cursor is persisted per <code>PlaidItem</code>, enabling safe resumption after failures without duplicating or missing data.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-step-left">
+            <div class="pipeline-dot active"></div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <h5>2 — Store: Encrypted at Write</h5>
+            <p>Transaction <code>merchantName</code> is encrypted with AES-256-GCM at write time. All database reads decrypt on the way out. This means even direct database access — whether authorized or not — exposes only ciphertext. The encryption key lives only in the application environment, never in the database.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-step-left">
+            <div class="pipeline-dot cache"></div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <h5>3 — Merchant Cache Lookup (Global)</h5>
+            <p>The <code>Merchant</code> table is a shared, cross-user cache of known merchants. Merchant names are HMAC'd for O(1) lookup without exposing plaintext in the index. If a merchant is found with sufficient confidence, its enrichment data is applied directly — no AI call needed. The <code>sourceCount</code> field tracks how many users have encountered this merchant; higher counts increase confidence. <code>lastVerifiedAt</code> timestamps enable periodic re-validation.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-step-left">
+            <div class="pipeline-dot ai"></div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <h5>4 — AI Classification (Cache Miss)</h5>
+            <p>On a cache miss or low-confidence merchant, the transaction is submitted to OpenAI (GPT-4o-mini) for classification. The model returns: primary category, subcategory, transaction type (subscription, transfer, income, one-time purchase, etc.), domain, and a structured confidence score per field. Results also include flags — for example, <code>RAISED</code> is set when a recurring transaction amount has increased, signaling a price change to the user. The model version is stored with every enrichment record, enabling future re-classification as models improve.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-step-left">
+            <div class="pipeline-dot active"></div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <h5>5 — Enrichment Record + Merchant Update</h5>
+            <p>A <code>TransactionEnrichment</code> record is created linking the transaction to its enrichment result. In parallel, the <code>Merchant</code> table is updated or created: <code>sourceCount</code> is incremented, <code>confidenceScore</code> is recalculated, and <code>nameEncrypted</code> stores the canonical display name. The next transaction from any user with the same merchant hits the cache directly — the AI call is amortized across the user base.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-step-left">
+            <div class="pipeline-dot feedback"></div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <h5>6 — User Correction Feedback Loop</h5>
+            <p>Users can submit corrections to enrichment results via <code>POST /enrichment/correct</code>. A <code>UserCorrection</code> record captures the field corrected, the old value, and the new value, linked to both the enrichment record and the user. Corrections feed back into merchant confidence scoring — enough corrections on a merchant trigger re-evaluation. This creates a supervised feedback loop where the data improves continuously without requiring manual curation.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="pipeline-step-left">
+            <div class="pipeline-dot yellow"></div>
+          </div>
+          <div class="pipeline-content">
+            <h5>7 — Retry & Resilience</h5>
+            <p>Failed enrichments (API errors, timeouts, unexpected model output) are not dropped. The <code>TransactionEnrichment</code> record tracks <code>retryCount</code> and <code>nextRetryAt</code> with exponential backoff. The enrichment source field (<code>plaid</code>, <code>ai</code>, <code>manual</code>) provides auditability — every enrichment has a traceable origin. Pending enrichments never block the transaction from being displayed; the UI degrades gracefully until enrichment resolves.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout" style="margin-top:28px;">
+        <p><strong>Why this matters architecturally:</strong> The enrichment pipeline is a write-optimized, eventually-consistent system with a shared global cache that improves with scale. New users benefit from enrichments already computed for previous users. The AI cost is incurred once per unique merchant, not once per transaction — making the system economically viable and faster over time. This is the same pattern used in production data enrichment at scale, implemented here as a solo project.</p>
+      </div>
+    </section>
+
+    <!-- AI Integration -->
+    <section class="cs-section">
+      <h2>AI Integration</h2>
+      <p class="section-lead">AI is used in three distinct ways: as a classification engine in the data pipeline, as an insight generator, and as a conversational interface. Each use case has different latency requirements, cost profiles, and failure modes — and each is handled differently.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h4>Transaction Enrichment</h4>
+          <div class="service-role">GPT-4o-mini / Batch classification</div>
+          <p>AI classifies transactions into structured categories, detects transaction types, and flags anomalies like price increases. Results are cached in the merchant layer so the model is called once per unique merchant, not per transaction.</p>
+        </div>
+        <div class="service-card">
+          <h4>AI-Generated Insights</h4>
+          <div class="service-role">GPT-4o-mini / Rate-limited generation</div>
+          <p>Analyzes 90 days of enriched transaction data to surface specific insights: spending spikes, recurring subscriptions detected, savings opportunities. Free tier: 1/month. Pro tier: 4/month. Insights older than 60 days are auto-pruned.</p>
+        </div>
+        <div class="service-card">
+          <h4>Financial Score Explanation</h4>
+          <div class="service-role">GPT-4o-mini / Cached per month</div>
+          <p>The monthly financial score (savings-rate based, 0–100) is accompanied by an AI-generated plain-language explanation. The explanation is cached in the score record and regenerated only when the score changes — not on every request.</p>
+        </div>
+        <div class="service-card">
+          <h4>Conversational AI Chat</h4>
+          <div class="service-role">GPT-4o-mini / Pro feature</div>
+          <p>Users can ask questions about their finances in natural language. Context is assembled from enriched transaction history, score data, and subscription information before each message. Rate limited at 20/hour. Pro-tier only.</p>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:20px;">
+        <p><strong>Lazy client initialization:</strong> The OpenAI client is instantiated on first use, not at server startup. This ensures that a missing or invalid API key doesn't crash the server — it surfaces as a runtime error only when an AI feature is actually called, keeping the rest of the API functional.</p>
+      </div>
+    </section>
+
+    <!-- External Services -->
+    <section class="cs-section">
+      <h2>External Services</h2>
+      <p class="section-lead">Four external APIs are integrated, each with its own authentication pattern, webhook or polling strategy, and failure handling. The architecture is designed so that a failure in any one service degrades gracefully without taking down unrelated functionality.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h4>Plaid</h4>
+          <div class="service-role">Bank data connectivity</div>
+          <p>Read-only access to transaction history, account balances, routing/account numbers, and ML-detected recurring streams. OAuth-based Link flow with access tokens encrypted at rest. Cursor-based incremental sync prevents data duplication across sync calls.</p>
+          <div class="tag-row" style="margin-top:10px;">
+            <span class="skill-tag">Transactions API</span>
+            <span class="skill-tag">Recurring API</span>
+            <span class="skill-tag">Auth API</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <h4>Twilio Verify</h4>
+          <div class="service-role">Passwordless authentication</div>
+          <p>Phone number OTP via SMS — no passwords stored anywhere in the system. Twilio Verify handles the code generation, delivery, and validation. OTP attempts are tracked in the DB with expiry timestamps. Rate limited at 3 requests per 10 minutes per IP.</p>
+          <div class="tag-row" style="margin-top:10px;">
+            <span class="skill-tag">SMS OTP</span>
+            <span class="skill-tag">E.164 validation</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <h4>Stripe</h4>
+          <div class="service-role">Subscription billing</div>
+          <p>Checkout sessions for monthly and annual plans. Customer portal for self-serve subscription management. Webhook handler validates Stripe signatures before processing any event — subscription lifecycle events (created, updated, deleted, payment failed) all update the User record in real time.</p>
+          <div class="tag-row" style="margin-top:10px;">
+            <span class="skill-tag">Checkout Sessions</span>
+            <span class="skill-tag">Webhooks</span>
+            <span class="skill-tag">Customer Portal</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <h4>Expo Push</h4>
+          <div class="service-role">Mobile push notifications</div>
+          <p>Expo's managed push notification service for React Native. Push tokens are registered at login and stored per user. Notifications are triggered on financial score changes and new AI insight generation — keeping users informed without requiring them to open the app.</p>
+          <div class="tag-row" style="margin-top:10px;">
+            <span class="skill-tag">Push Tokens</span>
+            <span class="skill-tag">Event-driven delivery</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile -->
+    <section class="cs-section">
+      <h2>Mobile Application</h2>
+      <p class="section-lead">React Native with Expo for cross-platform iOS and Android. File-based routing with expo-router, two-layer state management (Zustand for auth/global state, TanStack Query for server state with 48-hour cache), and biometric authentication via Expo's local auth module.</p>
+
+      <div class="two-col">
+        <div class="info-card">
+          <h4>Over-the-Air Updates</h4>
+          <p>Expo Updates is configured for OTA delivery — JavaScript bundle changes (UI fixes, logic updates, non-native changes) can be pushed directly to users' installed apps without an App Store review cycle. This is a significant operational advantage for a solo operator: bug fixes ship in minutes, not days.</p>
+        </div>
+        <div class="info-card">
+          <h4>State Architecture</h4>
+          <p>Auth state (token, userId) lives in Zustand and is loaded from Expo SecureStore at startup — tokens are never in plain memory longer than necessary. Server data (transactions, scores, insights) goes through TanStack Query with a 5-minute stale time and 48-hour garbage collection. The query cache is persisted to AsyncStorage, so the app is usable immediately on reopen, even before network requests complete.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills showcase -->
+    <section class="cs-section">
+      <h2>Skills Demonstrated</h2>
+      <p class="section-lead">The full set of technologies, patterns, and disciplines involved in designing and operating this system solo — aligned directly with systems consulting and AI implementation work.</p>
+
+      <div class="skills-showcase">
+        <div class="skill-group">
+          <h5>Systems Architecture</h5>
+          <div class="tag-row">
+            <span class="skill-tag">Distributed system design</span>
+            <span class="skill-tag">API architecture</span>
+            <span class="skill-tag">Database schema design</span>
+            <span class="skill-tag">Service decomposition</span>
+            <span class="skill-tag">Event-driven patterns</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h5>AI Implementation</h5>
+          <div class="tag-row">
+            <span class="skill-tag">LLM integration</span>
+            <span class="skill-tag">Prompt engineering</span>
+            <span class="skill-tag">RAG pipelines</span>
+            <span class="skill-tag">AI cost optimization</span>
+            <span class="skill-tag">Feedback loop design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h5>Data Engineering</h5>
+          <div class="tag-row">
+            <span class="skill-tag">Enrichment pipelines</span>
+            <span class="skill-tag">Cursor-based sync</span>
+            <span class="skill-tag">Global cache design</span>
+            <span class="skill-tag">Confidence scoring</span>
+            <span class="skill-tag">Retry & resilience</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h5>Infrastructure</h5>
+          <div class="tag-row">
+            <span class="skill-tag">Docker Compose</span>
+            <span class="skill-tag">nginx reverse proxy</span>
+            <span class="skill-tag">Cloudflare CDN/WAF</span>
+            <span class="skill-tag">Tailscale VPN</span>
+            <span class="skill-tag">Self-hosted CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h5>Security</h5>
+          <div class="tag-row">
+            <span class="skill-tag">AES-256-GCM encryption</span>
+            <span class="skill-tag">JWT / session management</span>
+            <span class="skill-tag">Defense-in-depth</span>
+            <span class="skill-tag">GDPR / CCPA compliance</span>
+            <span class="skill-tag">Webhook verification</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h5>Backend</h5>
+          <div class="tag-row">
+            <span class="skill-tag">Node.js / TypeScript</span>
+            <span class="skill-tag">Express.js v5</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">Prisma ORM</span>
+            <span class="skill-tag">Rate limiting</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h5>Mobile</h5>
+          <div class="tag-row">
+            <span class="skill-tag">React Native</span>
+            <span class="skill-tag">Expo / expo-router</span>
+            <span class="skill-tag">Zustand</span>
+            <span class="skill-tag">TanStack Query</span>
+            <span class="skill-tag">OTA updates</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h5>External Integrations</h5>
+          <div class="tag-row">
+            <span class="skill-tag">Plaid API</span>
+            <span class="skill-tag">Twilio Verify</span>
+            <span class="skill-tag">Stripe</span>
+            <span class="skill-tag">OpenAI API</span>
+            <span class="skill-tag">Expo Push</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Want to discuss the architecture?</h2>
+      <p>Ask the AI about any specific design decision, trade-off, or technology used in this system</p>
+      <a href="/chat.html" class="btn btn-primary">Chat with AI</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links" aria-label="Contact links">
+      <a href="mailto:jancarlo.ll.rojas@gmail.com" class="footer-icon" aria-label="Email">
+        <svg class="footer-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4M20 8L12 13L4 8V6L12 11L20 6V8Z"/></svg>
+      </a>
+      <a href="tel:+19198797020" class="footer-icon" aria-label="Phone">
+        <svg class="footer-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79A15.05 15.05 0 0 0 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.09 8.32 8.82 8.59L6.62 10.79Z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/jancarlorojas" target="_blank" rel="noopener noreferrer" class="footer-icon" aria-label="LinkedIn">
+        <svg class="footer-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M8.34 17.34V9.94H5.88V17.34H8.34M7.11 8.93A1.43 1.43 0 1 0 7.11 6.07A1.43 1.43 0 0 0 7.11 8.93M18.12 17.34V13.29C18.12 11.12 16.96 10.11 15.42 10.11C14.18 10.11 13.62 10.79 13.31 11.27V9.94H10.85V17.34H13.31V13.68C13.31 12.71 13.49 11.78 14.69 11.78C15.87 11.78 15.88 12.88 15.88 13.74V17.34H18.12Z"/></svg>
+      </a>
+      <a href="https://github.com/jancarlo-rojas" target="_blank" rel="noopener noreferrer" class="footer-icon" aria-label="GitHub">
+        <svg class="footer-icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12.23C.5 17.34 3.79 21.68 8.35 23.21c.58.1.79-.25.79-.56v-2.02c-3.4.74-4.12-1.66-4.12-1.66c-.55-1.42-1.35-1.79-1.35-1.79c-1.11-.77.08-.75.08-.75c1.22.09 1.86 1.27 1.86 1.27c1.09 1.9 2.86 1.35 3.56 1.03c.11-.8.43-1.35.78-1.66c-2.71-.32-5.56-1.39-5.56-6.18c0-1.37.48-2.49 1.27-3.37c-.13-.32-.55-1.6.12-3.33c0 0 1.04-.34 3.4 1.29A11.57 11.57 0 0 1 12 5.91c1.02 0 2.04.14 2.99.42c2.35-1.63 3.39-1.29 3.39-1.29c.68 1.73.26 3.01.13 3.33c.79.88 1.27 2 1.27 3.37c0 4.8-2.86 5.86-5.59 6.17c.44.39.83 1.16.83 2.35v3.48c0 .31.21.67.8.56c4.56-1.53 7.84-5.87 7.84-10.98A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      </a>
+    </div>
+    <p>&copy; 2026 Jancarlo L. Rojas. All rights reserved.</p>
+  </footer>
+  <script src="/nav.js"></script>
+</body>
+</html>
