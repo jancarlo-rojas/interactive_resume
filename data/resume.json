@@ -29,18 +29,18 @@
       "start": "2025-08",
       "end": "Present",
       "highlights": [
-        "Evaluate existing IT workflows and implement targeted automation to reduce manual overhead and improve service delivery speed",
-        "Manage endpoint lifecycle: imaging, configuration, software deployment, compliance validation, and system documentation",
-        "Identify process gaps in support ticket workflows and design structured improvements using Salesforce",
-        "Apply AI-assisted tooling to streamline repetitive IT tasks and build reusable automation scripts",
-        "Communicate system-level solutions clearly to non-technical stakeholders — translating architecture decisions into plain outcomes"
+        "Image, configure, and deploy endpoints across the university environment",
+        "Manage software installation, updates, and compliance validation on managed devices",
+        "Handle and resolve support tickets through Salesforce, documenting steps and outcomes",
+        "Produce clear technical documentation for IT processes and endpoint configurations",
+        "Communicate solutions to non-technical staff in plain, actionable terms"
       ],
       "focus_areas": [
-        "Systems workflow analysis and optimization",
-        "AI-assisted IT automation",
-        "Endpoint architecture and lifecycle management",
-        "Process consulting for IT service efficiency",
-        "Client-facing technical communication"
+        "Endpoint imaging and deployment",
+        "Device configuration and software management",
+        "Support ticket handling and resolution",
+        "IT process documentation",
+        "Technical communication with non-technical staff"
       ]
     },
     {
