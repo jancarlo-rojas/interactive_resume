@@ -142,6 +142,8 @@
         <span class="cs-badge">Plaid</span>
         <span class="cs-badge">Twilio</span>
         <span class="cs-badge">Stripe</span>
+        <span class="cs-badge">Sentry</span>
+        <span class="cs-badge">Slack Alerts</span>
         <span class="cs-badge">GDPR / CCPA Compliant</span>
       </div>
     </div>
@@ -429,7 +431,7 @@
     <!-- Services -->
     <section class="cs-section">
       <h2>External Services</h2>
-      <p class="section-lead">Four external services power the core product features. Each was selected based on fit, pricing model, and reliability. The architecture ensures that a problem with one service does not bring down the rest of the app.</p>
+      <p class="section-lead">Six external services power the core product features. Each was selected based on fit, pricing model, and reliability. The architecture ensures that a problem with one service does not bring down the rest of the app.</p>
 
       <div class="services-grid">
         <div class="service-card">
@@ -451,6 +453,16 @@
           <h4>Expo Push</h4>
           <div class="service-role">Mobile notifications</div>
           <p>Sends push notifications to users' phones when something worth their attention happens, such as a new monthly score or a flagged subscription price increase. Works cross-platform on iOS and Android.</p>
+        </div>
+        <div class="service-card">
+          <h4>Sentry</h4>
+          <div class="service-role">Error monitoring</div>
+          <p>Captures and reports runtime errors in real time across the API and mobile app. When something breaks in production, Sentry records the full stack trace, affected user count, and environment context so the issue can be diagnosed and fixed quickly.</p>
+        </div>
+        <div class="service-card">
+          <h4>Slack</h4>
+          <div class="service-role">Operational alerts</div>
+          <p>Receives automated alerts for critical system events: new user signups, failed payment webhooks, pipeline errors, and Sentry-triggered incidents. Acts as the real-time operations feed for a one-person team with no dedicated monitoring dashboard.</p>
         </div>
       </div>
     </section>
@@ -554,6 +566,8 @@
             <span class="skill-tag">Plaid</span>
             <span class="skill-tag">Twilio</span>
             <span class="skill-tag">Stripe</span>
+            <span class="skill-tag">Sentry</span>
+            <span class="skill-tag">Slack</span>
             <span class="skill-tag">OpenAI</span>
             <span class="skill-tag">GitHub Actions</span>
           </div>
