@@ -214,6 +214,9 @@ export default async function handler(req: any, res: any) {
     }
     const userMessage = req.body && req.body.message;
     if (!userMessage) return res.status(400).json({ error: 'message required' });
+    if (typeof userMessage !== 'string' || userMessage.length > 2000) {
+      return res.status(400).json({ error: 'Message too long. Please keep it under 2000 characters.' });
+    }
 
     try {
       const embModel = process.env.OPENAI_EMBEDDING_MODEL || 'text-embedding-ada-002';

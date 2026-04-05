@@ -81,6 +81,9 @@ html,body{height:100%;margin:0;font-family:'Segoe UI',Trebuchet MS,Arial,sans-se
   body.chat-page .nav-link-primary{display:none}
 }
 
+/* Rate limit note */
+.rate-limit-note{text-align:center;font-size:12px;color:var(--text-light);margin:6px 0 0;padding:0}
+
 /* Container & Layout */
 .container{max-width:1200px;margin:0 auto;padding:40px 20px 60px}
 body{display:flex;flex-direction:column;min-height:100vh}

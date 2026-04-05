@@ -64,10 +64,56 @@ function hideTyping() {
   typingEl = null;
 }
 
+const RATE_LIMIT = 10;
+const RATE_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+function getRateLimitState() {
+  try {
+    return JSON.parse(localStorage.getItem('chat_timestamps') || '[]');
+  } catch {
+    return [];
+  }
+}
+
+function saveRateLimitState(timestamps) {
+  localStorage.setItem('chat_timestamps', JSON.stringify(timestamps));
+}
+
+function checkRateLimit() {
+  const now = Date.now();
+  const timestamps = getRateLimitState().filter(t => now - t < RATE_WINDOW_MS);
+  saveRateLimitState(timestamps);
+  return timestamps.length;
+}
+
+function recordMessage() {
+  const timestamps = getRateLimitState();
+  timestamps.push(Date.now());
+  saveRateLimitState(timestamps);
+}
+
+function updateRateLimitNote() {
+  const note = document.getElementById('rate-limit-note');
+  if (!note) return;
+  const used = checkRateLimit();
+  const remaining = Math.max(0, RATE_LIMIT - used);
+  note.textContent = `${remaining} of ${RATE_LIMIT} messages remaining this hour.`;
+}
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const text = msg.value.trim();
   if (!text) return;
+
+  const used = checkRateLimit();
+  if (used >= RATE_LIMIT) {
+    append('bot', 'You have reached the limit of 10 messages per hour. Please check back later.');
+    msg.value = '';
+    return;
+  }
+
+  recordMessage();
+  updateRateLimitNote();
   append('user', text);
   msg.value = '';
 
@@ -101,3 +147,5 @@ suggestionCards.forEach(card => {
     form.dispatchEvent(new Event('submit'));
   });
 });
+
+updateRateLimitNote();
